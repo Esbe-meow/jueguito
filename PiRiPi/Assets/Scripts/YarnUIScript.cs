@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class YarnUIScript : MonoBehaviour
 {
-    public Player player;
-    private TextMeshProUGUI textM;
-    private Image img;
+    public Player Player;
+    [SerializeField] private TextMeshProUGUI textM;
+    [SerializeField] private Image img;
     [SerializeField] private float timer;
     [SerializeField] private int prevScore;
     [SerializeField] private int prueba;
@@ -25,12 +25,12 @@ public class YarnUIScript : MonoBehaviour
     void Update()
     {
         UIManage();
-        textM.text = player.yarn.ToString();
+        textM.text = Player.yarn.ToString();
     }
 
     private void UIManage()
     {
-        prueba = player.yarn;
+        prueba = Player.yarn;
         if (prevScore == prueba)
         {
             textM.enabled = true;

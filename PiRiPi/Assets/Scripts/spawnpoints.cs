@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class spawnpoints : MonoBehaviour
 {
-    [SerializeField] private Vector3 spawnpoint;
+    public Vector3 spawnpoint;
+
     void Start()
     {
         spawnpoint = transform.position;

@@ -20,17 +20,21 @@ public class Player : MonoBehaviour
     [SerializeField] private bool goingUp;
 
     [Header("Parameters")]
-    [SerializeField] private SpriteRenderer front;
+    //Movement
+    [SerializeField] private float totalSpeed;
+    [SerializeField] private float speedCap;
+    //Jump
     [SerializeField] private int jumpCount;
     [SerializeField] private int maxJumps;
     [SerializeField] private float jumpMult;
-    [SerializeField] private float correrSpeed;
     [SerializeField] private float jumpForce;
-    [SerializeField] private float fallDownSpeed;
-    [SerializeField] private float spriteTime;
     [SerializeField] private float timer;
-    [SerializeField] private float maxSpeed;
-    [SerializeField] public int yarn;
+    //Fall Down
+    [SerializeField] private float fallDownSpeed;
+    //Sprite Managing
+    [SerializeField] private SpriteRenderer front;
+    //Coins
+    public int yarn;
 
     void Start()
     {
@@ -43,10 +47,6 @@ public class Player : MonoBehaviour
 
     void Update()
     {   
-        //probando a fijar el cursor para linux
-        if (Cursor.lockState != CursorLockMode.Locked)
-        Cursor.lockState = CursorLockMode.Locked;
-
         if (Input.GetButtonDown("Fire1") && !isGrounded)
         {
             FallBack();
@@ -64,11 +64,11 @@ public class Player : MonoBehaviour
         
         if (Keyboard.current.leftShiftKey.isPressed)
         {
-            maxSpeed = 15.5f;
+            speedCap = 15.5f;
         }
         else 
         {
-            maxSpeed = 8.5f;
+            speedCap = 8.5f;
         }
 
 
@@ -110,7 +110,7 @@ public class Player : MonoBehaviour
 
         // Combinar la direccion de la camara con el movimiento
         Vector3 moveDir = (camForward * zInput + camRight * xInput).normalized;
-        rb.linearVelocity += moveDir * correrSpeed * Time.deltaTime;
+        rb.linearVelocity += moveDir * totalSpeed * Time.deltaTime;
 
         //si no se esta pulsando ningun boton se queda quieto para evitar deslizamientos raros
         if (xInput == 0 && zInput == 0)
@@ -138,9 +138,9 @@ public class Player : MonoBehaviour
 
         //cap de velocidad 
         Vector3 flatVel = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
-        if (flatVel.magnitude > maxSpeed)
+        if (flatVel.magnitude > speedCap)
         {
-            flatVel = flatVel.normalized * maxSpeed;
+            flatVel = flatVel.normalized * speedCap;
             rb.linearVelocity = new Vector3(flatVel.x, rb.linearVelocity.y, flatVel.z);
         }
     }
