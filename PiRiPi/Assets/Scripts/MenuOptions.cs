@@ -2,11 +2,17 @@ using UnityEngine;
 using System.Collections;
 
 
-public class OptionsMenu : MonoBehaviour
+public class MenuOptions : MonoBehaviour
 {
     [Header("Options Variables")]
-    [SerializeField] private PauseMenu pauseMenu;
+    [SerializeField] private MenuPause pauseMenu;
     [SerializeField] private GameObject optionsMenu;
+
+    [Header("Options Buttons")]
+    [SerializeField] private GameObject backtoMenuButton;
+    [SerializeField] private GameObject videoButton;
+
+    public bool videoOptionsOpen = false;
 
     [Header("Audio")]
     [SerializeField] private AudioSource AS;
@@ -27,7 +33,24 @@ public class OptionsMenu : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         StartCoroutine(CloseAfterAnimation());
+
+        if(pauseMenu.optionsOpen)
+        menuManaging();
     }
+
+    public void menuManaging()
+    {
+        if (videoOptionsOpen)
+        {
+            videoButton.SetActive(false);
+            backtoMenuButton.SetActive(false);
+        }
+        else
+        {
+            videoButton.SetActive(true);
+            backtoMenuButton.SetActive(true);
+        }
+     }
 
     private IEnumerator CloseAfterAnimation()
     {
@@ -39,8 +62,7 @@ public class OptionsMenu : MonoBehaviour
         pauseMenu.optionsOpen = false;
     }
 
-
     public void OnBacktoMenu() => StartCoroutine(CloseAfterAnimation());
 
-
+    public void OnVideoButton() => videoOptionsOpen = true;
 }

@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PauseMenu : MonoBehaviour
+public class MenuPause : MonoBehaviour
 {   
     [Header("UI Variables")]
     [SerializeField] private TextMeshProUGUI textM;
