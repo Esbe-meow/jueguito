@@ -16,12 +16,20 @@ public class MenuVideo : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape)){
-            optionsMenu.videoOptionsOpen=false;
+            optionsMenu.videoOptionsOpen = false;
         }     
 
+        MenuManaging();
+        
+    }
+
+    public void MenuManaging()
+    {
         if (optionsMenu.videoOptionsOpen)
         videoMenu.SetActive(true);
         else
         videoMenu.SetActive(false);
     }
+
+    public void OnBacktoMenu() => optionsMenu.videoOptionsOpen = false;
 }
