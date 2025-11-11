@@ -34,7 +34,7 @@ public class MenuOptions : MonoBehaviour
         if(pauseMenu.optionsOpen)
         menuManaging(); 
         
-        if (!videoOptionsOpen)
+        if (!videoOptionsOpen && pauseMenu.optionsOpen)
             if (Input.GetKeyDown(KeyCode.Escape))
             StartCoroutine(CloseAfterAnimation());
     }
