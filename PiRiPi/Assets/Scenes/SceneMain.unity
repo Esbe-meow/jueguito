@@ -794,7 +794,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Back to Menu
+  m_text: volver a opciones
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1732,10 +1732,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74edd1444561643448766dea716b1813, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Portals
-  linkedPortal: {fileID: 0}
-  cam: {fileID: 0}
-  texture: {fileID: 0}
-  Camera: {fileID: 0}
 --- !u!1 &351742470
 GameObject:
   m_ObjectHideFlags: 0
@@ -4544,9 +4540,10 @@ GameObject:
   - component: {fileID: 977920864}
   - component: {fileID: 977920863}
   - component: {fileID: 977920862}
-  - component: {fileID: 977920866}
-  - component: {fileID: 977920868}
   - component: {fileID: 977920867}
+  - component: {fileID: 977920868}
+  - component: {fileID: 977920866}
+  - component: {fileID: 977920869}
   m_Layer: 5
   m_Name: Menu
   m_TagString: Untagged
@@ -4776,6 +4773,21 @@ MonoBehaviour:
   videoOptionsOpen: 0
   AS: {fileID: 977920867}
   animator: {fileID: 185397262}
+--- !u!114 &977920869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 977920861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab60396451f4c2f478ef4b1a5151f329, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MenuVideo
+  optionsMenu: {fileID: 977920868}
+  videoMenu: {fileID: 1615126235}
+  test: 0
 --- !u!1 &986790821
 GameObject:
   m_ObjectHideFlags: 0
@@ -8702,7 +8714,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1864158360}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
@@ -8740,8 +8752,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 977920868}
-        m_TargetAssemblyTypeName: OptionsMenu, Assembly-CSharp
-        m_MethodName: OnBacktoMenu
+        m_TargetAssemblyTypeName: MenuOptions, Assembly-CSharp
+        m_MethodName: OnVideoButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9931,7 +9943,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Video
+  m_text: opcion 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

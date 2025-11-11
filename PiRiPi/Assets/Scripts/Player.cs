@@ -124,16 +124,10 @@ public class Player : MonoBehaviour
         else
         {
             if (xInput == 0)
-            {
                 if (zInput == 1)
-                {
                     front.gameObject.SetActive(false);
-                }
                 else
-                {
                     front.gameObject.SetActive(true);
-                }
-            }
         }
 
         //cap de velocidad 

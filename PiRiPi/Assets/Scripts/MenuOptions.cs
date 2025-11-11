@@ -31,11 +31,16 @@ public class MenuOptions : MonoBehaviour
         if (pauseMenu.optionsOpen)
         animator.SetTrigger("Open");
 
-        if (Input.GetKeyDown(KeyCode.Escape))
-        StartCoroutine(CloseAfterAnimation());
-
         if(pauseMenu.optionsOpen)
-        menuManaging();
+        menuManaging(); 
+        
+        if (!videoOptionsOpen)
+            if (Input.GetKeyDown(KeyCode.Escape))
+            StartCoroutine(CloseAfterAnimation());
+    }
+
+    private void FixedUpdate() 
+    {
     }
 
     public void menuManaging()
