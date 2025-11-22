@@ -8,6 +8,7 @@ using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
     //variables:
+    [SerializeField] Rope cuerda;
     [SerializeField] private LayerMask groundMask;
     private SpriteRenderer sr;
     private Rigidbody rb;
@@ -96,7 +97,10 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if(!cuerda.isClimbing)
         Correr();
+        else
+        Escalar();
     }
 
     private void Correr()
@@ -139,6 +143,15 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void Escalar()
+    {
+        if(Input.GetAxisRaw("Vertical") >= 0.1)
+            rb.linearVelocity = new Vector3 (0, 5, 0);
+        else if (Input.GetAxisRaw("Vertical") <= -0.1)
+            rb.linearVelocity = new Vector3 (0, -5, 0);
+        else    
+            rb.linearVelocity = Vector3.zero;
+    }
     private void Jump()
     {
         if (jumpCount == maxJumps) return;
