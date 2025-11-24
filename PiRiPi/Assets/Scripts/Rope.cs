@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Rope : MonoBehaviour
 {
+    //hola
     [SerializeField] private GameObject cat;
     [SerializeField] private Rigidbody RB;
     [SerializeField] private bool nearRope = false;
