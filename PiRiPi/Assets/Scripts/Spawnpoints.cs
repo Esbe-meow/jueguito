@@ -17,4 +17,9 @@ public class spawnpoints : MonoBehaviour
             transform.position = spawnpoint;
         }
     }
+
+    private void OnTriggerEnter(Collider other) {
+        if (other.CompareTag("Player"))
+            spawnpoint = this.gameObject.transform.position;
+    }
 }

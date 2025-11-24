@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
 {
     //variables:
     [SerializeField] Rope cuerda;
+    [SerializeField] Katamari katamari;
     [SerializeField] private LayerMask groundMask;
     private SpriteRenderer sr;
     private Rigidbody rb;
@@ -49,28 +50,18 @@ public class Player : MonoBehaviour
     void Update()
     {   
         if (Input.GetButtonDown("Fire1") && !isGrounded)
-        {
             FallBack();
-        }
 
         if (Input.GetButtonDown("Jump") && !fallingBack)
-        {
             Jump();
-        }
         
         if (fallingBack)
-        {
             BoostJump();
-        }
         
         if (Keyboard.current.leftShiftKey.isPressed)
-        {
             speedCap = 15.5f;
-        }
         else 
-        {
             speedCap = 8.5f;
-        }
 
 
         if (goingUp && rb.linearVelocity.y < -0.1f)
@@ -195,10 +186,5 @@ public class Player : MonoBehaviour
         rb.linearVelocity -= Vector3.up * fallDownSpeed * Time.deltaTime;  
         fallingBack = true;
         animator.Play("Falling", 0, 0);
-    }
-
-    void RunFaster()
-    {
-        
     }
 }
