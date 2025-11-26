@@ -23,7 +23,7 @@ public class Rope : MonoBehaviour
         ropePosZ = this.gameObject.transform.position.z;
     }
 
-    void Update()
+    public void Update()
     {
         stateManaging();
 
@@ -31,7 +31,7 @@ public class Rope : MonoBehaviour
         //ropePosZ = this.gameObject.transform.position.z;
     }
 
-    void stateManaging()
+    public void stateManaging()
     {
         if(nearRope && !isClimbing)
             if (Input.GetKeyDown(KeyCode.E))
@@ -82,13 +82,13 @@ public class Rope : MonoBehaviour
     }
     */
 
-    private void OnTriggerEnter(Collider other) 
+    public void OnTriggerEnter(Collider other) 
     {
         if (other.CompareTag("Player"))
         nearRope = true;
     }
 
-    private void OnTriggerExit(Collider other) {
+    public void OnTriggerExit(Collider other) {
         if  (other.CompareTag("Player"))
         {
             nearRope = false;

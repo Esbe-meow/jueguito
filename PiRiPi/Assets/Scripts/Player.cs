@@ -134,7 +134,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void Escalar()
+    public void Escalar()
     {
         if(Input.GetAxisRaw("Vertical") >= 0.1)
             rb.linearVelocity = new Vector3 (0, 5, 0);
