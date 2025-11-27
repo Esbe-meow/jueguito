@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     private Transform cameraTransform;
     private bool isJumping;
     private bool isGrounded;
+    public bool isClimbing;
     private bool fallingBack;
     private bool boostedJump;
     [SerializeField] private bool goingUp;
@@ -88,7 +89,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(!cuerda.isClimbing)
+        if(!isClimbing)
         Correr();
         else
         Escalar();

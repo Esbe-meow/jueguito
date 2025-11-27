@@ -11,7 +11,7 @@ public class Billboard : MonoBehaviour
 
     void Update()
     {
-        //si es un coleccionable, tambien rotara hacia arriba, si no será un billboard normal.
+        //si es un coleccionable, tambien rotara hacia arriba, si no sera un billboard normal.
         if (this.gameObject.CompareTag("Collectibles"))
         {
             //mantener el sprite siempre mirando a la camara pero tambien gira hacia arriba

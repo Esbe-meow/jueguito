@@ -3,6 +3,7 @@ using UnityEngine;
 public class Rope : MonoBehaviour
 {
     //hola
+    [SerializeField] private Player player;
     [SerializeField] private GameObject cat;
     [SerializeField] private Rigidbody RB;
     [SerializeField] private bool nearRope = false;
@@ -12,7 +13,6 @@ public class Rope : MonoBehaviour
     //[SerializeField] private CinemachineInputAxisController axisController;
     //[SerializeField] private CinemachineCamera CineCam;
     //[SerializeField] private float lockedAngle = -90f;
-    public bool isClimbing = false; 
     [SerializeField] private float ropePosX;
     [SerializeField] private float ropePosZ;
     [SerializeField] private float Xdistance;
@@ -33,12 +33,12 @@ public class Rope : MonoBehaviour
 
     public void stateManaging()
     {
-        if(nearRope && !isClimbing)
+        if(nearRope && !player.isClimbing)
             if (Input.GetKeyDown(KeyCode.E))
             {
                 cat.transform.position = new Vector3 (ropePosX + Xdistance, cat.transform.position.y, ropePosZ + Zdistance);
                 //cameraLock();
-                isClimbing = true;
+                player.isClimbing = true;
                 timerRunning = true;
                 RB.useGravity = false;
                 RB.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
@@ -53,12 +53,12 @@ public class Rope : MonoBehaviour
                     timer = 0;
                 }
 
-        if (isClimbing && canExit)
+        if (player.isClimbing && canExit)
             if (Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("Jump") || !nearRope)
             {
                 //cameraUnlock();
                 canExit = false;
-                isClimbing = false;
+                player.isClimbing = false;
                 RB.useGravity = true;
                 RB.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
             }
