@@ -2,24 +2,24 @@ using UnityEngine;
 
 public class spawnpoints : MonoBehaviour
 {
-    public Vector3 spawnpoint;
+    public Player player;
 
     void Start()
     {
-        spawnpoint = transform.position;
+        player.spawnpoint = player.transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(transform.position.y < -1)
+        if(player.transform.position.y < -1)
         {
-            transform.position = spawnpoint;
+            player.transform.position = player.spawnpoint;
         }
     }
 
     private void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Player"))
-            spawnpoint = this.gameObject.transform.position;
+            player.spawnpoint = this.gameObject.transform.position;
     }
 }

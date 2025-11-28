@@ -2,6 +2,7 @@ using System.Threading;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MenuPause : MonoBehaviour
 {   
@@ -10,6 +11,7 @@ public class MenuPause : MonoBehaviour
     [SerializeField] private GameObject pauseMenuUI;
     [SerializeField] private GameObject optionsMenuUI;
     [SerializeField] private Player player;
+    [SerializeField] private string gameSceneName = "titleScene";
     
     private float previousTimeScale = 1f;
     private bool isPaused = true; 
@@ -22,7 +24,7 @@ public class MenuPause : MonoBehaviour
     [SerializeField] private AudioClip closeMenu;
 
     [Header("spawn reset")]
-    [SerializeField] private spawnpoints spawn;
+    public spawnpoints spawn;
 
     public void Start() 
     {
@@ -111,17 +113,13 @@ public class MenuPause : MonoBehaviour
 
     public void OnCheckpointButton()
     {
-        //tp to last checkpoint (check spawnpoint script)
-        player.transform.position = spawn.spawnpoint;
+        //tp to last checkpoint (check Spawnpoints script or Player)
+        player.transform.position = player.spawnpoint;
         Resume();
     }
 
-    public void OnQuitButton()
+    public void OnQuitToMenu()
     {
-        #if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-        #else 
-            Application.Quit();
-        #endif
+        SceneManager.LoadScene(gameSceneName);
     }
 }

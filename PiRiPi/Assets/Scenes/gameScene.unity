@@ -1214,7 +1214,7 @@ GameObject:
   m_Component:
   - component: {fileID: 218548877}
   m_Layer: 0
-  m_Name: CuerdaEmpty
+  m_Name: Cuerdas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1234,6 +1234,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 423315775}
+  - {fileID: 2028567453}
+  - {fileID: 1392968566}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &257709045
@@ -2316,13 +2318,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56fe97f526c16f34a85dd2421493b89f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Rope
+  player: {fileID: 1106328879}
   cat: {fileID: 1106328875}
   RB: {fileID: 1106328878}
   nearRope: 0
   canExit: 0
   timerRunning: 0
   timer: 0
-  isClimbing: 0
   ropePosX: 0
   ropePosZ: 0
   Xdistance: 0.2
@@ -4190,7 +4192,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 766405384}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 977920866}
+        m_TargetAssemblyTypeName: MenuPause, Assembly-CSharp
+        m_MethodName: OnQuitToMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &766405384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5081,11 +5095,12 @@ MonoBehaviour:
   pauseMenuUI: {fileID: 549970057}
   optionsMenuUI: {fileID: 185397258}
   player: {fileID: 1106328879}
+  gameSceneName: titleScene
   optionsOpen: 1
   AS: {fileID: 977920867}
   openMenu: {fileID: 8300000, guid: 3fe787fd8871941778304cf82c094045, type: 3}
   closeMenu: {fileID: 8300000, guid: 83ac7c29830370ed7a97f62eec25c218, type: 3}
-  spawn: {fileID: 1106328883}
+  spawn: {fileID: 0}
 --- !u!82 &977920867
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6139,7 +6154,6 @@ GameObject:
   - component: {fileID: 1106328879}
   - component: {fileID: 1106328881}
   - component: {fileID: 1106328882}
-  - component: {fileID: 1106328883}
   - component: {fileID: 1106328884}
   m_Layer: 0
   m_Name: cat
@@ -6266,7 +6280,11 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 8
-  goingUp: 0
+  sr: {fileID: 2036919520}
+  rb: {fileID: 1106328878}
+  animator: {fileID: 1106328882}
+  cameraTransform: {fileID: 88162492}
+  isClimbing: 0
   totalSpeed: 400
   speedCap: 0
   jumpCount: 0
@@ -6277,6 +6295,7 @@ MonoBehaviour:
   fallDownSpeed: 2000
   front: {fileID: 2036919520}
   yarn: 0
+  spawnpoint: {x: 0, y: 0, z: 0}
 --- !u!114 &1106328881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6311,19 +6330,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1106328883
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1106328875}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ee997d0180482a41b9fbc5531630617, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnpoint: {x: 0, y: 0, z: 0}
 --- !u!136 &1106328884
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7542,13 +7548,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56fe97f526c16f34a85dd2421493b89f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Rope
+  player: {fileID: 1106328879}
   cat: {fileID: 1106328875}
   RB: {fileID: 1106328878}
   nearRope: 0
   canExit: 0
   timerRunning: 0
   timer: 0
-  isClimbing: 0
   ropePosX: 0
   ropePosZ: 0
   Xdistance: 0.2
@@ -7641,11 +7647,11 @@ Transform:
   m_GameObject: {fileID: 1392968561}
   serializedVersion: 2
   m_LocalRotation: {x: -0.00000005960465, y: -0, z: -0, w: -1}
-  m_LocalPosition: {x: -53.20581, y: 21.75417, z: -39.063515}
+  m_LocalPosition: {x: -64.45699, y: 21.75417, z: 21.127495}
   m_LocalScale: {x: 0.15042722, y: 5.4952493, z: 0.19211948}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 218548877}
   m_LocalEulerAnglesHint: {x: -90, y: 90, z: 90}
 --- !u!1 &1427683681
 GameObject:
@@ -9841,8 +9847,8 @@ Transform:
   m_GameObject: {fileID: 1916090497}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.18425, y: 4.98402, z: 7.49655}
-  m_LocalScale: {x: 1.4838651, y: 1.1977932, z: 1.09311}
+  m_LocalPosition: {x: -0.18425, y: 3.711, z: 8.73207}
+  m_LocalScale: {x: 1.4838651, y: 1.1977932, z: 1.1489788}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1111613574}
@@ -9859,7 +9865,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ee997d0180482a41b9fbc5531630617, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::spawnpoints
-  spawnpoint: {x: 0, y: 0, z: 0}
+  player: {fileID: 1106328879}
 --- !u!65 &1916090500
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10706,13 +10712,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56fe97f526c16f34a85dd2421493b89f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Rope
+  player: {fileID: 1106328879}
   cat: {fileID: 1106328875}
   RB: {fileID: 1106328878}
   nearRope: 0
   canExit: 0
   timerRunning: 0
   timer: 0
-  isClimbing: 0
   ropePosX: 0
   ropePosZ: 0
   Xdistance: 0
@@ -10804,12 +10810,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2028567448}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -50.49, y: 45.9545, z: 41.15}
-  m_LocalScale: {x: 0.17, y: 5.4952497, z: 0.17}
+  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -61.74118, y: 45.9545, z: 101.34101}
+  m_LocalScale: {x: 0.16999999, y: 5.4952497, z: 0.16999999}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 218548877}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &2036919518
 GameObject:
@@ -11404,6 +11410,4 @@ SceneRoots:
   - {fileID: 871807516}
   - {fileID: 977920865}
   - {fileID: 1430381030}
-  - {fileID: 2028567453}
-  - {fileID: 1392968566}
   - {fileID: 218548877}

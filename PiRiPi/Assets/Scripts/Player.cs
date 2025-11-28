@@ -11,18 +11,20 @@ public class Player : MonoBehaviour
     [SerializeField] Rope cuerda;
     [SerializeField] Katamari katamari;
     [SerializeField] private LayerMask groundMask;
-    private SpriteRenderer sr;
-    private Rigidbody rb;
-    private Animator animator;
-    private Transform cameraTransform;
-    private bool isJumping;
+    [SerializeField] private SpriteRenderer sr;
+    [SerializeField] private Rigidbody rb;
+    [SerializeField] private Animator animator;
+    [SerializeField] private Transform cameraTransform;
+
+    [Header("States")]
+    private bool isJumping; 
     private bool isGrounded;
     public bool isClimbing;
-    private bool fallingBack;
-    private bool boostedJump;
-    [SerializeField] private bool goingUp;
+    private bool fallingBack; //falling to the ground
+    private bool boostedJump; //can jump higher
+    private bool goingUp; //going up after a jump
 
-    [Header("Parameters")]
+    [Header("Movility")]
     //Movement
     [SerializeField] private float totalSpeed;
     [SerializeField] private float speedCap;
@@ -36,8 +38,11 @@ public class Player : MonoBehaviour
     [SerializeField] private float fallDownSpeed;
     //Sprite Managing
     [SerializeField] private SpriteRenderer front;
-    //Coins
-    public int yarn;
+    
+    [Header("others")]
+    public int yarn; //coins
+    public Vector3 spawnpoint;
+
 
     void Start()
     {
