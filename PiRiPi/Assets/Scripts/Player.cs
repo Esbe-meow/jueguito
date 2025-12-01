@@ -4,7 +4,6 @@ using UnityEngine.Rendering;
 using UnityEngine.Video;
 using UnityEngine.InputSystem;
 
-//hola
 public class Player : MonoBehaviour
 {
     //variables:
