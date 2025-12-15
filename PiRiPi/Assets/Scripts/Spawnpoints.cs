@@ -20,6 +20,6 @@ public class spawnpoints : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Player"))
-            player.spawnpoint = this.gameObject.transform.position;
+            player.spawnpoint = new Vector3(-54, 28, 34);
     }
 }

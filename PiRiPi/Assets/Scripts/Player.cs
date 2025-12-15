@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
 
     [Header("States")]
     private bool isJumping; 
-    private bool isGrounded;
+    [SerializeField] private bool isGrounded;
     public bool isClimbing;
     private bool fallingBack; //falling to the ground
     private bool boostedJump; //can jump higher
@@ -41,6 +41,7 @@ public class Player : MonoBehaviour
     [Header("others")]
     public int yarn; //coins
     public Vector3 spawnpoint;
+    [SerializeField] private float rayDistance;
 
 
     void Start()
@@ -73,9 +74,10 @@ public class Player : MonoBehaviour
         {
             animator.Play("Falling", 0, 0);
             goingUp = false;
+            rb.linearVelocity += new Vector3(rb.linearVelocity.x, -5, rb.linearVelocity.z);
         }
 
-        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 0.4f) && !isGrounded && rb.linearVelocity.y <= 0)    
+        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, rayDistance) && !isGrounded && rb.linearVelocity.y <= 0)    
         {
             isGrounded = true;
             isJumping = false;
@@ -148,6 +150,7 @@ public class Player : MonoBehaviour
         else    
             rb.linearVelocity = Vector3.zero;
     }
+
     private void Jump()
     {
         if (jumpCount == maxJumps) return;
