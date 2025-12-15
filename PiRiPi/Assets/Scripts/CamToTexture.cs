@@ -26,11 +26,11 @@ public class PlayerCameraOnTV : MonoBehaviour
         mat.mainTexture = rt;
         tvRenderer.material = mat;
 
-        // crear y configurar cámara espejo
+        // crear y configurar camara espejo
         GameObject g = new GameObject("MirrorCam");
         mirrorCam = g.AddComponent<Camera>();
 
-        // copiar ajustes importantes de la cámara del jugador
+        // copiar ajustes importantes de la camara del jugador
         mirrorCam.CopyFrom(playerCamera);
         mirrorCam.cullingMask = playerCamera.cullingMask;
         mirrorCam.clearFlags = playerCamera.clearFlags;
@@ -43,11 +43,11 @@ public class PlayerCameraOnTV : MonoBehaviour
         var al = mirrorCam.GetComponent<AudioListener>();
         if (al != null) DestroyImmediate(al);
 
-        // no render automático a pantalla: lo haremos con Render()
+        // no render automï¿½tico a pantalla: lo haremos con Render()
         mirrorCam.enabled = false;
         mirrorCam.targetTexture = rt;
 
-        // parentear para sincronizar posición/rotación con la cámara del jugador
+        // parentear para sincronizar posicion/rotacion con la camara del jugador
         g.transform.SetParent(playerCamera.transform, false);
         g.transform.localPosition = Vector3.zero;
         g.transform.localRotation = Quaternion.identity;

@@ -50,6 +50,7 @@ public class Player : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
 
+        spawnpoint = transform.position;
         cameraTransform = Camera.main.transform;
     }
 
@@ -74,7 +75,7 @@ public class Player : MonoBehaviour
         {
             animator.Play("Falling", 0, 0);
             goingUp = false;
-            rb.linearVelocity += new Vector3(rb.linearVelocity.x, -5, rb.linearVelocity.z);
+            //rb.linearVelocity += new Vector3(rb.linearVelocity.x, -5, rb.linearVelocity.z);
         }
 
         if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, rayDistance) && !isGrounded && rb.linearVelocity.y <= 0)    
