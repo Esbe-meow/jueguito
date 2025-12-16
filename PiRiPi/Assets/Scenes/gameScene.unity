@@ -270,6 +270,7 @@ GameObject:
   - component: {fileID: 78647242}
   - component: {fileID: 78647241}
   - component: {fileID: 78647240}
+  - component: {fileID: 78647243}
   m_Layer: 0
   m_Name: CajaTriggerZ
   m_TagString: Untagged
@@ -369,6 +370,26 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 78647238}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &78647243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 78647238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9bc2b951fd7e7d51b83ced0dcbfe56a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CajaZ
+  cat: {fileID: 1106328875}
+  player: {fileID: 1106328879}
+  caja: {fileID: 688369402}
+  zOffset: 1
+  timer: 0
+  canExit: 0
+  timerRunning: 0
+  nearBoxZ: 0
 --- !u!1 &88162490
 GameObject:
   m_ObjectHideFlags: 0

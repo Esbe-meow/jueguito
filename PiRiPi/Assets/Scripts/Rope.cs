@@ -10,9 +10,6 @@ public class Rope : MonoBehaviour
     [SerializeField] private bool canExit = false;
     [SerializeField] private bool timerRunning = false;
     [SerializeField] private float timer = 0;
-    //[SerializeField] private CinemachineInputAxisController axisController;
-    //[SerializeField] private CinemachineCamera CineCam;
-    //[SerializeField] private float lockedAngle = -90f;
     [SerializeField] private float ropePosX;
     [SerializeField] private float ropePosZ;
     [SerializeField] private float Xdistance;

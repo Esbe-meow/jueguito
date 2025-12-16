@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     [SerializeField] Katamari katamari;
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private SpriteRenderer sr;
-    [SerializeField] private Rigidbody rb;
+    [SerializeField] public Rigidbody rb;
     [SerializeField] private Animator animator;
     [SerializeField] private Transform cameraTransform;
 
