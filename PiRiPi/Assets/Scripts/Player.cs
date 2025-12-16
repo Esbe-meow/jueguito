@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
     private bool fallingBack; //falling to the ground
     private bool boostedJump; //can jump higher
     private bool goingUp; //going up after a jump
+    public bool cajeando; //moving the box
 
     [Header("Movility")]
     //Movement

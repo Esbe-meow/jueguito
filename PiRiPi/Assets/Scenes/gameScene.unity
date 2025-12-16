@@ -271,7 +271,7 @@ GameObject:
   - component: {fileID: 78647241}
   - component: {fileID: 78647240}
   m_Layer: 0
-  m_Name: Cube1
+  m_Name: CajaTriggerZ
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6666,7 +6666,7 @@ GameObject:
   - component: {fileID: 1060171602}
   - component: {fileID: 1060171601}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: CajaTriggerX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7082,6 +7082,7 @@ MonoBehaviour:
   cameraTransform: {fileID: 88162492}
   isGrounded: 0
   isClimbing: 0
+  cajeando: 0
   totalSpeed: 400
   speedCap: 0
   jumpCount: 0
