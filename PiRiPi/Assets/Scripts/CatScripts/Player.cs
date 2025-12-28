@@ -8,7 +8,6 @@ public class Player : MonoBehaviour
 {
     //variables:
     [SerializeField] Rope cuerda;
-    [SerializeField] Katamari katamari;
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private SpriteRenderer sr;
     [SerializeField] public Rigidbody rb;

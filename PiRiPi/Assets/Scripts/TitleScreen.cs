@@ -6,10 +6,10 @@ public class TitleScreenManager : MonoBehaviour
     [Header("Nombre de la escena del juego")]
     public string gameSceneName = "GameScene";
 
-    [Header("Paneles del menú")]
+    [Header("Paneles del menu")]
     public GameObject mainMenuPanel;
 
-    private void Start()
+    private void Start() 
     {
         mainMenuPanel.SetActive(true);
     }
