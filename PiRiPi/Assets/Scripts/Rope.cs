@@ -54,6 +54,7 @@ public class Rope : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("Jump") || !nearRope)
             {
                 //cameraUnlock();
+                player.climbVel = Vector3.zero;
                 canExit = false;
                 player.isClimbing = false;
                 RB.useGravity = true;

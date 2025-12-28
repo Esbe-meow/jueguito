@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     private bool isJumping; 
     [SerializeField] private bool isGrounded;
     public bool isClimbing;
+    private bool isWalking;
     private bool fallingBack; //falling to the ground
     private bool boostedJump; //can jump higher
     private bool goingUp; //going up after a jump
@@ -33,6 +34,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float jumpMult;
     [SerializeField] private float jumpForce;
     [SerializeField] private float timer;
+    //Climb
+    public Vector3 climbVel;
     //Fall Down
     [SerializeField] private float fallDownSpeed;
     //Sprite Managing
@@ -47,7 +50,6 @@ public class Player : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        sr = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
 
         spawnpoint = transform.position;
@@ -128,9 +130,15 @@ public class Player : MonoBehaviour
         {
             if (xInput == 0)
                 if (zInput == 1)
+                {
+                    sr.enabled = true;
                     front.gameObject.SetActive(false);
+                }
                 else
+                {
+                    sr.enabled = false;
                     front.gameObject.SetActive(true);
+                }
         }
 
         //cap de velocidad 
@@ -140,16 +148,30 @@ public class Player : MonoBehaviour
             flatVel = flatVel.normalized * speedCap;
             rb.linearVelocity = new Vector3(flatVel.x, rb.linearVelocity.y, flatVel.z);
         }
+
+        //animacion de caminar:
+        bool hasMovementInput = moveDir.sqrMagnitude > 0.001f;
+        isWalking = hasMovementInput && isGrounded;
+
+        animator.SetBool("isWalking", isWalking);
+        animator.SetBool("isGrounded", isGrounded);
     }
 
     public void Escalar()
     {
         if(Input.GetAxisRaw("Vertical") >= 0.1)
-            rb.linearVelocity = new Vector3 (0, 5, 0);
+            climbVel = rb.linearVelocity = new Vector3 (0, 5, 0);
         else if (Input.GetAxisRaw("Vertical") <= -0.1)
-            rb.linearVelocity = new Vector3 (0, -5, 0);
+            climbVel = rb.linearVelocity = new Vector3 (0, -5, 0);
         else    
-            rb.linearVelocity = Vector3.zero;
+            climbVel = rb.linearVelocity = Vector3.zero;
+
+        bool hasMovementInput = climbVel.sqrMagnitude > 0.001f;
+        isWalking = hasMovementInput && isClimbing;
+
+        animator.SetBool("inRope", isClimbing);
+        animator.SetBool("isClimbing", hasMovementInput);
+
     }
 
     private void Jump()
