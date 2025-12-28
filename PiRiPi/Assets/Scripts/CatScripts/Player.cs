@@ -102,6 +102,8 @@ public class Player : MonoBehaviour
         Correr();
         else
         Escalar();
+        
+        animator.SetBool("inRope", isClimbing);
     }
 
     private void Correr()
@@ -169,7 +171,6 @@ public class Player : MonoBehaviour
         bool hasMovementInput = climbVel.sqrMagnitude > 0.001f;
         isWalking = hasMovementInput && isClimbing;
 
-        animator.SetBool("inRope", isClimbing);
         animator.SetBool("isClimbing", hasMovementInput);
 
     }
