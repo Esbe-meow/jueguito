@@ -18,16 +18,23 @@ public class catMeme : MonoBehaviour
     }
     void Update()
     {
-        //moveEyes();
+        
         Vector2 mousePos = Mouse.current.position.ReadValue();
         Vector2 screenCenter = new Vector2(Screen.width / 2f, Screen.height / 2f);
         Vector2 centeredMousePos = mousePos - screenCenter;
 
-        eyesRT[0].anchoredPosition = centeredMousePos;
-        if(eyesRT[0].anchoredPosition.y > limitesUpDown[0]) eyesRT[0].anchoredPosition = new Vector2 (eyesRT[0].anchoredPosition.x, 63);
-        if(eyesRT[0].anchoredPosition.y < limitesUpDown[1]) eyesRT[0].anchoredPosition = new Vector2 (eyesRT[0].anchoredPosition.x, -63);
-        if(eyesRT[0].anchoredPosition.x > limitesDer[0]) eyesRT[0].anchoredPosition = new Vector2 (-131, eyesRT[0].anchoredPosition.y);
-        if(eyesRT[0].anchoredPosition.x < limitesIzq[0]) eyesRT[0].anchoredPosition = new Vector2 (-254, eyesRT[0].anchoredPosition.y);
+        moveEyes(0, centeredMousePos);
+        moveEyes(1, centeredMousePos);
+        
+    }
+    
+    public void moveEyes(int a, Vector2 pos)
+    {
+        eyesRT[a].anchoredPosition = pos;
+        if(eyesRT[a].anchoredPosition.y > limitesUpDown[0]) eyesRT[a].anchoredPosition = new Vector2 (eyesRT[a].anchoredPosition.x, 63);
+        if(eyesRT[a].anchoredPosition.y < limitesUpDown[1]) eyesRT[a].anchoredPosition = new Vector2 (eyesRT[a].anchoredPosition.x, -63);
+        if(eyesRT[a].anchoredPosition.x > limitesDer[a]) eyesRT[a].anchoredPosition = new Vector2 (limitesDer[a], eyesRT[a].anchoredPosition.y);
+        if(eyesRT[a].anchoredPosition.x < limitesIzq[a]) eyesRT[a].anchoredPosition = new Vector2 (limitesIzq[a], eyesRT[a].anchoredPosition.y);
     }
 
     public void getLimits()
@@ -36,7 +43,7 @@ public class catMeme : MonoBehaviour
         limitesUpDown[1] =  -64;
         limitesDer[0] = -130;
         limitesIzq[0] = -250;
-        limitesDer[1] = 145;
-        limitesIzq[1] = 255;
+        limitesDer[1] = 255;
+        limitesIzq[1] = 145;
     }
 }
