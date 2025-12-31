@@ -102,7 +102,8 @@ public class Player : MonoBehaviour
         Correr();
         else
         Escalar();
-        
+
+
         animator.SetBool("inRope", isClimbing);
     }
 
@@ -172,7 +173,6 @@ public class Player : MonoBehaviour
         isWalking = hasMovementInput && isClimbing;
 
         animator.SetBool("isClimbing", hasMovementInput);
-
     }
 
     private void Jump()
