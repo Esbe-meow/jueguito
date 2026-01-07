@@ -31,5 +31,15 @@ public class MenuVideo : MonoBehaviour
         videoMenu.SetActive(false);
     }
 
+    public void SetQuality(int qualityIndex)
+    {
+        QualitySettings.SetQualityLevel(qualityIndex);
+    }
+
+    public void SetFullScreen(bool isFullScreen)
+    {
+        Screen.fullScreen = isFullScreen;
+    }
+    
     public void OnBacktoMenu() => optionsMenu.videoOptionsOpen = false;
 }

@@ -73,8 +73,6 @@ public class MenuPause : MonoBehaviour
         previousTimeScale = Time.timeScale;
         Time.timeScale = 0f;
         
-        //player.rb.constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
-        
         if (pauseMenuUI != null) pauseMenuUI.SetActive(true);
 
         //unlocks Cursor
@@ -92,8 +90,6 @@ public class MenuPause : MonoBehaviour
 
         //restore timeScale
         Time.timeScale = previousTimeScale; 
-
-        //player.rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
 
         if (pauseMenuUI != null) pauseMenuUI.SetActive(false);
 

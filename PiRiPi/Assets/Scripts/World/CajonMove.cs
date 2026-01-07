@@ -9,8 +9,8 @@ public class cajonMove : MonoBehaviour
     void Start()
     {
         initPos = transform.position;
-        vel = Random.Range(0.5f, 5);
-        desplazamiento = Random.Range(0.5f, 7);
+        vel = Random.Range(0.5f, 2);
+        desplazamiento = Random.Range(2f, 4);
     }
 
     void Update()
