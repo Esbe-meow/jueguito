@@ -1,71 +1,75 @@
-using System.Threading;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Threading;
+using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class MenuPause : MonoBehaviour
 {   
     [Header("UI Variables")]
-    [SerializeField] private TextMeshProUGUI textM;
-    [SerializeField] private GameObject pauseMenuUI;
-    [SerializeField] private GameObject optionsMenuUI;
-    [SerializeField] private Player player;
-    [SerializeField] private string gameSceneName = "titleScene";
     
-    private float previousTimeScale = 1f;
-    private bool isPaused = true; 
-    public bool optionsOpen = false;
+    [SerializeField] TextMeshProUGUI textM;
+    [SerializeField] GameObject pauseMenu;
+    [SerializeField] GameObject optionsMenu;
+    [SerializeField] GameObject videoMenu;
+    [SerializeField] GameObject audioMenu;
 
+    [Header ("Other Variables")]
+    [SerializeField] Player player;
+    [SerializeField] string gameSceneName = "titleScene";
+    
+    float previousTimeScale;
 
     [Header("Audio")]
-    [SerializeField] private AudioSource AS;
-    [SerializeField] private AudioClip openMenu;
-    [SerializeField] private AudioClip closeMenu;
+    [SerializeField] AudioSource AS;
+    [SerializeField] AudioClip openMenu;
+    [SerializeField] AudioClip closeMenu;
 
-    [Header("spawn reset")]
-    public spawnpoints spawn;
+    [Header("Animation")]
+    [SerializeField] private Animator animator;
 
     public void Start() 
     {
-        if (pauseMenuUI != null) 
-        pauseMenuUI.SetActive(false);
-        isPaused = false;
+        if (pauseMenu != null) 
+        pauseMenu.SetActive(false);
 
-        if (optionsMenuUI != null) 
-        optionsMenuUI.SetActive(false);
-        optionsOpen = false;
+        if  (optionsMenu != null) 
+        optionsMenu.SetActive(false);
+
+        if (videoMenu != null)
+        videoMenu.SetActive(false);
+
+        if (audioMenu != null)
+        audioMenu.SetActive(false);
+
     }
 
     public void Update() 
     {
         //blocks main menu if theres other above it
-        if(!optionsOpen)
+        if (!optionsMenu.activeSelf)
             if (Input.GetKeyDown(KeyCode.Escape))
-            TogglePauseMenu();    
+            TogglePauseMenu(); 
     }
 
-    public void updateYarns(int a)
-    {
-        textM.text = a.ToString();
-    }
-
+    //Pause menu:
     public void TogglePauseMenu()
     {
         //updates yarns to show in menu
-        updateYarns(player.yarn);
+        textM.text = player.yarn.ToString();
 
-        if (isPaused)
+        if (pauseMenu.activeSelf)
             Resume();
         else
             Pause();
     }
 
-    public void Pause()
+    //pauses time and open the menu
+    void Pause()
     {
-        if (isPaused)
+        if (pauseMenu.activeSelf)
         return;
-        isPaused = true;
 
         AS.PlayOneShot(openMenu);
 
@@ -73,25 +77,25 @@ public class MenuPause : MonoBehaviour
         previousTimeScale = Time.timeScale;
         Time.timeScale = 0f;
         
-        if (pauseMenuUI != null) pauseMenuUI.SetActive(true);
+        if (pauseMenu != null) pauseMenu.SetActive(true);
 
         //unlocks Cursor
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
 
-    public void Resume()
+    //resume time and close the menu
+    void Resume()
     {
-        if (!isPaused)
+        if (!pauseMenu.activeSelf)
         return;
-        isPaused = false;
 
         AS.PlayOneShot(closeMenu);
 
         //restore timeScale
         Time.timeScale = previousTimeScale; 
 
-        if (pauseMenuUI != null) pauseMenuUI.SetActive(false);
+        if (pauseMenu != null) pauseMenu.SetActive(false);
 
         //locks cursor
         if (Cursor.lockState != CursorLockMode.Locked)
@@ -99,28 +103,75 @@ public class MenuPause : MonoBehaviour
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
         }      
-    }
+    } 
 
-    public void openOptionsMenu()
+    //Options menu:
+    public void ToggleOptionsMenu()
     {
-        optionsMenuUI.SetActive(true);
-        optionsOpen = true;
+        if (!optionsMenu.activeSelf)
+            OpenOptions();
+        else
+            CloseOptions();
     }
 
-    public void OnResumeButton() => Resume();
-
-    public void OnOptionsButton() => openOptionsMenu();
-
-    public void OnCheckpointButton()
+    void OpenOptions()
     {
-        //tp to last checkpoint (check Spawnpoints script or Player)
-        player.transform.position = player.spawnpoint;
-        Resume();
+        optionsMenu.SetActive(true);
+        animator.SetTrigger("Open");
     }
 
-    public void OnQuitToMenu()
+    void CloseOptions()
+    {
+        StartCoroutine(CloseAfterAnimation());
+    }
+    //animacion de cierre
+    private IEnumerator CloseAfterAnimation()
+    {
+        animator.SetTrigger("Close");
+
+        yield return new WaitForSecondsRealtime(0.3f);
+        optionsMenu.SetActive(false);
+    }
+
+    //Video menu:
+    public void ToggleVideoMenu()
+    {
+        if (!videoMenu.activeSelf)
+            videoMenu.SetActive(true);
+        else
+            videoMenu.SetActive(false);
+    }
+
+    //Audio menu:
+    public void ToggleAudioMenu()
+    {
+        if(!audioMenu.activeSelf)
+            audioMenu.SetActive(true);
+        else
+            audioMenu.SetActive(false);
+    }
+
+    //Pause buttons
+    public void OnSpawnpointButton() 
+    {
+        player.transform.position = player.spawnpoint; 
+        TogglePauseMenu();
+    }
+
+    public void OnContinueButton() => TogglePauseMenu();
+
+    public void OnOptionsButton() => ToggleOptionsMenu();
+
+    public void OnMainMenuButton()
     {
         Time.timeScale = previousTimeScale; 
         SceneManager.LoadScene(gameSceneName);
     }
+
+    //Options buttons
+    public void OnVideoButton() => ToggleVideoMenu();
+    
+    public void OnAudioButton() => ToggleAudioMenu();
+
+    public void OnBacktoMenu() => ToggleOptionsMenu();
 }

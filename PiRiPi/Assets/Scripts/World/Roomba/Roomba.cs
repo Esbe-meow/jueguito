@@ -15,6 +15,7 @@ public class Roomba : MonoBehaviour
     [SerializeField] private Vector3 spawn;
     [SerializeField] private Quaternion targetRotation;
     [SerializeField] private bool tracking;
+    [SerializeField] private bool onTop;
 
 
     void Start()
@@ -24,7 +25,7 @@ public class Roomba : MonoBehaviour
 
     void Update()
     {
-        if (cat.transform.position.y <= this.transform.position.y + yAdd)
+        if (cat.transform.position.y <= this.transform.position.y + yAdd && !onTop)
             tracking = true;
         else
             tracking = false;
@@ -85,6 +86,11 @@ public class Roomba : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Player"))
-            cat.transform.position = player.spawnpoint;
+            onTop = true;
+    }
+
+    private void OnTriggerExit(Collider other) {
+        if (other.CompareTag("Player"))
+            onTop = false;
     }
 }

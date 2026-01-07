@@ -1,9 +1,49 @@
 fileFormatVersion: 2
-guid: 7e2b05844399c9d44b10421d2ab9cdb4
+guid: 07549ea5c0654dcd8802c36d124c7193
 ModelImporter:
-  serializedVersion: 22200
+  serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Patas_Base_color
+    second: {fileID: 2800000, guid: 0c6ace12e6ec73298a14b69080a9592e, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Patas_Metallic
+    second: {fileID: 2800000, guid: c3afb06ad24136a88806459d074ef579, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Patas_Normal
+    second: {fileID: 2800000, guid: db63c7e63258c2cfe8ae6068ad2e21ee, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Patas_Roughness
+    second: {fileID: 2800000, guid: b78e4516fec79c9f28fae284fa093513, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Sillon_Base_color
+    second: {fileID: 2800000, guid: ec1b287f5d58e154b86677872c75c05d, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Sillon_Metallic
+    second: {fileID: 2800000, guid: c6082e7386b93668196f3e5482b06e2f, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Sillon_Normal
+    second: {fileID: 2800000, guid: 8f41421df6d660b40a94f01122fb273d, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Sillon_Roughness
+    second: {fileID: 2800000, guid: 062f0022a5e851a51b88a313b9aa7f77, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -33,7 +73,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 100
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -56,6 +96,9 @@ ModelImporter:
     maxBonesPerVertex: 4
     minBoneWeight: 0.001
     optimizeBones: 1
+    generateMeshLods: 0
+    meshLodGenerationFlags: 0
+    maximumMeshLod: -1
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
@@ -88,7 +131,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1
+    globalScale: 100
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
