@@ -10,6 +10,7 @@ public class VideoSettings : MonoBehaviour
     {
         dropdown.value = QualitySettings.GetQualityLevel();
     }
+
     public void SetQuality(int qualityIndex)
     {
         QualitySettings.SetQualityLevel(qualityIndex);

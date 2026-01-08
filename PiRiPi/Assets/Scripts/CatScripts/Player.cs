@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
     [SerializeField] private bool isGrounded;
     public bool isClimbing;
     private bool isWalking;
-    private bool fallingBack; //falling to the ground
+    [SerializeField] private bool fallingBack; //falling to the ground
     [SerializeField] private bool boostedJump; //can jump higher
     private bool goingUp; //going up after a jump
     public bool isPaused;
@@ -46,7 +46,6 @@ public class Player : MonoBehaviour
     public int collectionable;
     public Vector3 spawnpoint;
     [SerializeField] private float rayDistance;
-
     [SerializeField] private float gravity;
 
     void Start()
@@ -62,8 +61,13 @@ public class Player : MonoBehaviour
     {   
         if(!isPaused)
         rb.linearVelocity += new Vector3(rb.linearVelocity.x, -gravity, rb.linearVelocity.z);
-
-        if (Input.GetButtonDown("Fire1") && !isGrounded)
+/*
+        var gamepad = Gamepad.current;
+        if (gamepad == null)
+            return;
+        float leftTriggerValue = gamepad.leftTrigger.ReadValue();
+*/
+        if (Input.GetButtonDown("Fire1") /*|| leftTriggerValue > 0.1f*/ && !isGrounded)
             FallBack();
 
         if (Input.GetButtonDown("Jump") && !fallingBack)

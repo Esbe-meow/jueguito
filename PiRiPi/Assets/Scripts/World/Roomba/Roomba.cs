@@ -2,20 +2,22 @@ using UnityEngine;
 
 public class Roomba : MonoBehaviour
 {
-    [SerializeField] private GameObject cat;
-    [SerializeField] private Player player;
-    [SerializeField] private float rotationSpeed;
-    [SerializeField] private float mvmntSpeed;
-    [SerializeField] private float yAdd;
-    [SerializeField] private float timer;
+    [SerializeField] GameObject cat;
+    [SerializeField] Player player;
+    [SerializeField] float rotationSpeed;
+    [SerializeField] float mvmntSpeed;
+    [SerializeField] float yAdd;
+    [SerializeField] float timer; //timer for "patroling"
+    [SerializeField] float timer2; //time to chase again after hitting furniture
     [Range(-62f, 62f)]
-    [SerializeField] private float randomNumX;
+    [SerializeField] float randomNumX;
     [Range(-62f, 62f)]
-    [SerializeField] private float randomNumZ;
-    [SerializeField] private Vector3 spawn;
-    [SerializeField] private Quaternion targetRotation;
-    [SerializeField] private bool tracking;
+    [SerializeField] float randomNumZ;
+    [SerializeField] Vector3 spawn;
+    [SerializeField] Quaternion targetRotation;
     [SerializeField] private bool onTop;
+    public bool cantReach;
+    public bool tracking;
 
 
     void Start()
@@ -25,7 +27,7 @@ public class Roomba : MonoBehaviour
 
     void Update()
     {
-        if (cat.transform.position.y <= this.transform.position.y + yAdd && !onTop)
+        if (cat.transform.position.y <= this.transform.position.y + yAdd && !onTop && !cantReach)
             tracking = true;
         else
             tracking = false;
@@ -42,6 +44,16 @@ public class Roomba : MonoBehaviour
             randomNumX = Random.Range(-62, 62);
             randomNumZ = Random.Range(-62, 62);
             timer = 0;
+        }
+
+        if (cantReach)
+        {
+            timer2 += Time.deltaTime;
+            if (timer2 >= 5f)
+            {
+                cantReach = false;
+                timer2 = 0;
+            }
         }
     }
 
@@ -65,7 +77,7 @@ public class Roomba : MonoBehaviour
             transform.position += transform.forward * mvmntSpeed * Time.deltaTime;
     }
 
-    private void randomMoving()
+    public void randomMoving()
     {
         Vector3 dir = new Vector3 (randomNumX, transform.position.y, randomNumZ) - transform.position;
         dir.y = 0f; 

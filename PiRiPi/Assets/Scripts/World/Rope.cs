@@ -31,7 +31,7 @@ public class Rope : MonoBehaviour
     public void stateManaging()
     {
         if(nearRope && !player.isClimbing)
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetButtonDown("Interact"))
             {
                 cat.transform.position = new Vector3 (ropePosX + Xdistance, cat.transform.position.y, ropePosZ + Zdistance);
                 //cameraLock();
@@ -51,7 +51,7 @@ public class Rope : MonoBehaviour
                 }
 
         if (player.isClimbing && canExit)
-            if (Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("Jump") || !nearRope)
+            if (Input.GetButtonDown("Interact") || Input.GetButtonDown("Jump") || !nearRope)
             {
                 //cameraUnlock();
                 player.climbVel = Vector3.zero;

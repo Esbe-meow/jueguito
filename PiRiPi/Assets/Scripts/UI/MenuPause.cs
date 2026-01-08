@@ -14,6 +14,7 @@ public class MenuPause : MonoBehaviour
     [SerializeField] GameObject optionsMenu;
     [SerializeField] GameObject videoMenu;
     [SerializeField] GameObject audioMenu;
+    [SerializeField] GameObject controlsMenu;
 
     [Header ("Other Variables")]
     [SerializeField] Player player;
@@ -43,6 +44,9 @@ public class MenuPause : MonoBehaviour
         if (audioMenu != null)
         audioMenu.SetActive(false);
 
+        if (audioMenu != null)
+        controlsMenu.SetActive(false);
+
     }
 
     public void Update() 
@@ -51,7 +55,7 @@ public class MenuPause : MonoBehaviour
 
         //blocks main menu if theres other above it
         if (!optionsMenu.activeSelf)
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetButtonDown("Pause"))
             TogglePauseMenu(); 
     }
 
@@ -153,6 +157,14 @@ public class MenuPause : MonoBehaviour
             audioMenu.SetActive(false);
     }
 
+    public void ToggleControlsMenu()
+    {
+        if (!controlsMenu.activeSelf)
+            controlsMenu.SetActive(true);
+        else
+            controlsMenu.SetActive(false);
+    }
+
     //Pause buttons
     public void OnSpawnpointButton() 
     {
@@ -174,6 +186,8 @@ public class MenuPause : MonoBehaviour
     public void OnVideoButton() => ToggleVideoMenu();
     
     public void OnAudioButton() => ToggleAudioMenu();
+
+    public void OnControlsButton() => ToggleControlsMenu();
 
     public void OnBacktoMenu() => ToggleOptionsMenu();
 }
