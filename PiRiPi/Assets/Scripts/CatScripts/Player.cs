@@ -20,9 +20,9 @@ public class Player : MonoBehaviour
     public bool isClimbing;
     private bool isWalking;
     private bool fallingBack; //falling to the ground
-    private bool boostedJump; //can jump higher
+    [SerializeField] private bool boostedJump; //can jump higher
     private bool goingUp; //going up after a jump
-    public bool cajeando; //moving the box
+    public bool isPaused;
 
     [Header("Movility")]
     //Movement
@@ -43,9 +43,11 @@ public class Player : MonoBehaviour
     
     [Header("others")]
     public int yarn; //coins
+    public int collectionable;
     public Vector3 spawnpoint;
     [SerializeField] private float rayDistance;
 
+    [SerializeField] private float gravity;
 
     void Start()
     {
@@ -58,6 +60,9 @@ public class Player : MonoBehaviour
 
     void Update()
     {   
+        if(!isPaused)
+        rb.linearVelocity += new Vector3(rb.linearVelocity.x, -gravity, rb.linearVelocity.z);
+
         if (Input.GetButtonDown("Fire1") && !isGrounded)
             FallBack();
 

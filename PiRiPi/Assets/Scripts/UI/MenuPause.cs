@@ -47,6 +47,8 @@ public class MenuPause : MonoBehaviour
 
     public void Update() 
     {
+        player.isPaused = pauseMenu.activeSelf;
+
         //blocks main menu if theres other above it
         if (!optionsMenu.activeSelf)
             if (Input.GetKeyDown(KeyCode.Escape))
