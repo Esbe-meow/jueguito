@@ -5,6 +5,8 @@ using UnityEngine.UI;
 public class VideoSettings : MonoBehaviour
 {
     [SerializeField] TMP_Dropdown dropdown;
+    [SerializeField] TextMeshProUGUI screenText;
+    [SerializeField] bool state;
 
     private void Awake() 
     {
@@ -19,5 +21,22 @@ public class VideoSettings : MonoBehaviour
     public void SetFullScreen(bool isFullScreen)
     {
         Screen.fullScreen = isFullScreen;
+        Debug.Log("Full screen: " + isFullScreen);
+    }
+
+    public void onClickFullScreen()
+    {
+        if(state)
+        {
+            state = false;
+            SetFullScreen(state);
+            screenText.text = "Full Screen";
+        }
+        else
+        {
+            state = true;
+            SetFullScreen(state);
+            screenText.text = "Windowed";
+        }
     }
 }

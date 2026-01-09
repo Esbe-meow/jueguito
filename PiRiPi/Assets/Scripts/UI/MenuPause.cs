@@ -30,6 +30,11 @@ public class MenuPause : MonoBehaviour
     [Header("Animation")]
     [SerializeField] private Animator animator;
 
+    private void Awake() 
+    {
+        LoadPlayer();   
+    }
+    
     public void Start() 
     {
         if (pauseMenu != null) 
@@ -179,6 +184,7 @@ public class MenuPause : MonoBehaviour
     public void OnMainMenuButton()
     {
         Time.timeScale = previousTimeScale; 
+        SavePlayer();
         SceneManager.LoadScene(gameSceneName);
     }
 
@@ -190,4 +196,27 @@ public class MenuPause : MonoBehaviour
     public void OnControlsButton() => ToggleControlsMenu();
 
     public void OnBacktoMenu() => ToggleOptionsMenu();
+
+    //save player
+    public void SavePlayer()
+    {
+        SaveSystem.SavePlayer(player);
+    }
+
+    //load player
+    public void LoadPlayer()
+    {
+        PlayerData data = SaveSystem.LoadPlayer();
+
+        player.yarn = data.yarn;
+        player.collectionable = data.collectibles;
+
+        Vector3 checkpoint;
+        checkpoint.x = data.checkpoint[0];
+        checkpoint.y = data.checkpoint[1];
+        checkpoint.z = data.checkpoint[2];
+
+        player.transform.position = checkpoint;
+
+    }
 }
