@@ -14827,7 +14827,7 @@ MonoBehaviour:
   dialogueText: {fileID: 526947576}
   interacting: 0
   state: 0
-  animator: {fileID: 0}
+  animator: {fileID: 608689291}
   currentNPC: {fileID: 0}
   typingSpeed: 0.03
 --- !u!1 &1929647529
@@ -15086,7 +15086,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
