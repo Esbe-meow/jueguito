@@ -1,0 +1,11 @@
+using UnityEngine;
+
+public class DialogueTrigger : MonoBehaviour
+{
+    public Dialogue dialogue;
+
+    public void TriggerDialogue(NPCtalk npc)
+    {
+        FindObjectOfType<DialogueManager>().StartDialogue(dialogue, npc);
+    }
+}

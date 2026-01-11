@@ -20,6 +20,6 @@ public class spawnpoints : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Player"))
-            player.spawnpoint = player.transform.position;
+            player.spawnpoint = this.transform.position;
     }
 }
