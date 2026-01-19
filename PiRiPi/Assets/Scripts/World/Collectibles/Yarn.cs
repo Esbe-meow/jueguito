@@ -1,6 +1,8 @@
+using Unity.VisualScripting;
 using UnityEngine;
+ //ola
 
-public class LevelCollectible : MonoBehaviour
+public class Yarn : MonoBehaviour
 {
     [SerializeField] private Player player;
 
@@ -8,7 +10,7 @@ public class LevelCollectible : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            player.collectionable++;
+            player.yarn++;
             Destroy(this.gameObject);
         }
     }
