@@ -1291,6 +1291,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pared_Fin
       objectReference: {fileID: 0}
+    - target: {fileID: 1210465741419387640, guid: 3afbef9892f88f4488ce34162262a872, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 1bbc6bc5722e4804fb847e71622e0bb6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1499,6 +1503,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cajon6_Fin
       objectReference: {fileID: 0}
+    - target: {fileID: 8573926795575891383, guid: f55fc650f95656e4d958c5c61b92a3b3, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 846caefb53616b649a06714900a28a1d, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2514,6 +2522,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cajon1_Fin
       objectReference: {fileID: 0}
+    - target: {fileID: 8573926795575891383, guid: f55fc650f95656e4d958c5c61b92a3b3, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 7f5a499e42724774990a655fea192dae, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3302,6 +3314,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 23890f481a1852842b4215902dfa124f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d0e71c931441f5c41ba66b94570c811e, type: 2}
     - target: {fileID: 919132149155446097, guid: 23890f481a1852842b4215902dfa124f, type: 3}
       propertyPath: m_Name
       value: Mesa_Fin
@@ -3669,6 +3685,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cajon5_Fin
       objectReference: {fileID: 0}
+    - target: {fileID: 8573926795575891383, guid: f55fc650f95656e4d958c5c61b92a3b3, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c8c911e433977c448965266fd581507d, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3877,6 +3897,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pared_Fin (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1210465741419387640, guid: 3afbef9892f88f4488ce34162262a872, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 7b067e0820d885148a2c1bf3ad510055, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4153,6 +4177,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 5657f15814641cc43961a63484b83a77, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a40b3d49d15780c4c8f50723052190ba, type: 2}
     - target: {fileID: 919132149155446097, guid: 5657f15814641cc43961a63484b83a77, type: 3}
       propertyPath: m_Name
       value: Mueble_Cajon_Fin
@@ -7051,6 +7079,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: f5dbe0497a7ec4d40b8e8dfa41a473b2, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 702b8162029af0b49b1d5b17970cda81, type: 2}
     - target: {fileID: 919132149155446097, guid: f5dbe0497a7ec4d40b8e8dfa41a473b2, type: 3}
       propertyPath: m_Name
       value: Torre_Fin
@@ -8670,6 +8702,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cajon3_Fin
       objectReference: {fileID: 0}
+    - target: {fileID: 8573926795575891383, guid: f55fc650f95656e4d958c5c61b92a3b3, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 440bf4d12244afd4cae3384eab510eb0, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9245,6 +9281,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pared_Fin (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1210465741419387640, guid: 3afbef9892f88f4488ce34162262a872, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 91bf6608f24dc5c43ab87db2a19bb223, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10613,6 +10653,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 26e18bef7cf38884ba1139008e974e20, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: adf6121f37a68b94a92f14c834ee4577, type: 2}
     - target: {fileID: 919132149155446097, guid: 26e18bef7cf38884ba1139008e974e20, type: 3}
       propertyPath: m_Name
       value: TV_Fin
@@ -11516,6 +11560,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 223928cadfcec244f85d5031be9fd831, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a86dcceedefce134c99451df0002366b, type: 2}
     - target: {fileID: 919132149155446097, guid: 223928cadfcec244f85d5031be9fd831, type: 3}
       propertyPath: m_Name
       value: Mesilla_Fin
@@ -11603,6 +11651,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: a9364f1b2eb581747bb815a54520635f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: bf87639392d9c1740995f77dd61d553f, type: 2}
     - target: {fileID: 919132149155446097, guid: a9364f1b2eb581747bb815a54520635f, type: 3}
       propertyPath: m_Name
       value: Suelo_Fin
@@ -12111,6 +12163,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 51b9e08d3c9041e4296e5d190cd2b927, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ba538bcbda02b3f4b9065b8e10e9989e, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 51b9e08d3c9041e4296e5d190cd2b927, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 903833e7d2300fa4bb8cea97275eb424, type: 2}
     - target: {fileID: 919132149155446097, guid: 51b9e08d3c9041e4296e5d190cd2b927, type: 3}
       propertyPath: m_Name
       value: Cama_Fin
@@ -12584,6 +12644,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 3eaf6649ab8327541bbce2848eebc219, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 2bd37545d09c8a9459aa37be7fa0cd77, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 3eaf6649ab8327541bbce2848eebc219, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 20e473a07d49dff4e8cc20ea2aad02ac, type: 2}
     - target: {fileID: 919132149155446097, guid: 3eaf6649ab8327541bbce2848eebc219, type: 3}
       propertyPath: m_Name
       value: Puerta_Fin
@@ -15299,6 +15367,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cajon2_Fin
       objectReference: {fileID: 0}
+    - target: {fileID: 8573926795575891383, guid: f55fc650f95656e4d958c5c61b92a3b3, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 7ba8925f4fdc6b6459c1a12b1c1e3231, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -15413,6 +15485,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pared_Fin (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1210465741419387640, guid: 3afbef9892f88f4488ce34162262a872, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ec82d22ac3f09844bac20a8b50e0fa97, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -16521,6 +16597,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 5c228d92d8b110f41a4329f9e46f5302, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: b27b608a0b19aa747885f5772c7f1604, type: 2}
     - target: {fileID: 919132149155446097, guid: 5c228d92d8b110f41a4329f9e46f5302, type: 3}
       propertyPath: m_Name
       value: Cuenco_Fin
@@ -17521,6 +17601,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cajon4_Fin
       objectReference: {fileID: 0}
+    - target: {fileID: 8573926795575891383, guid: f55fc650f95656e4d958c5c61b92a3b3, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c19dc495dac00dd418f48112572fd924, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -17663,6 +17747,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: cc47a83a128e4ed4dbc2ad6cee840ac4, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: eaba3d14785830f40afe1ef82a480523, type: 2}
     - target: {fileID: 919132149155446097, guid: cc47a83a128e4ed4dbc2ad6cee840ac4, type: 3}
       propertyPath: m_Name
       value: Mueble_TV_Fin
