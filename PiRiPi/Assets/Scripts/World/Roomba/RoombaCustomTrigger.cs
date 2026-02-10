@@ -10,7 +10,7 @@ public class CustomTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
             cat.transform.position = player.spawnpoint;
 
-        if (other.CompareTag("Blocking") && roomba.tracking)
+        if (other.CompareTag("Blocking"))
         {
             roomba.cantReach = true;
         }
