@@ -10483,7 +10483,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 26e18bef7cf38884ba1139008e974e20, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -148.9523
+      value: -145.19
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 26e18bef7cf38884ba1139008e974e20, type: 3}
       propertyPath: m_LocalPosition.y
@@ -10491,7 +10491,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 26e18bef7cf38884ba1139008e974e20, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 76.11
+      value: 74.7
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 26e18bef7cf38884ba1139008e974e20, type: 3}
       propertyPath: m_LocalRotation.w
@@ -16473,6 +16473,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cuenco_Fin
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5c228d92d8b110f41a4329f9e46f5302, type: 3}
+      propertyPath: m_TagString
+      value: Blocking
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -17577,7 +17581,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cc47a83a128e4ed4dbc2ad6cee840ac4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -140.1
+      value: -139.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cc47a83a128e4ed4dbc2ad6cee840ac4, type: 3}
       propertyPath: m_LocalPosition.y
