@@ -52,6 +52,11 @@ public class MenuPause : MonoBehaviour
         if (audioMenu != null)
         controlsMenu.SetActive(false);
 
+        if (Cursor.lockState != CursorLockMode.Locked)
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        } 
     }
 
     public void Update() 
