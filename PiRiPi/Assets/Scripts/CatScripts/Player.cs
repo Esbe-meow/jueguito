@@ -6,112 +6,148 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-    //variables:
-    [SerializeField] Rope cuerda;
+    // variables:
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private SpriteRenderer sr;
     [SerializeField] public Rigidbody rb;
     [SerializeField] private Animator animator;
     [SerializeField] private Transform cameraTransform;
+    [SerializeField] private LayerMask groundLayer;
 
     [Header("States")]
-    private bool isJumping; 
+    [SerializeField] private bool isJumping;
     [SerializeField] private bool isGrounded;
+    private bool ignoreGroundCheck = false;
     public bool isClimbing;
-    private bool isWalking;
-    [SerializeField] private bool fallingBack; //falling to the ground
-    [SerializeField] private bool boostedJump; //can jump higher
-    private bool goingUp; //going up after a jump
+    [SerializeField] private bool isWalking;
+    [SerializeField] private bool isFalling;
     public bool isPaused;
+    private bool facingForward = true; // true = espalda a cámara
+    [SerializeField] private bool fallingBack; // falling to the ground
+    [SerializeField] private bool boostedJump; // can jump higher
+    private bool goingUp; // going up after a jump
 
     [Header("Movility")]
-    //Movement
+    // Movement
     [SerializeField] private float totalSpeed;
     [SerializeField] private float speedCap;
-    //Jump
+
+    // Jump
     [SerializeField] private int jumpCount;
-    [SerializeField] private int maxJumps;
+    [SerializeField] private int maxJumps = 2; // doble salto
     [SerializeField] private float jumpMult;
     [SerializeField] private float jumpForce;
     [SerializeField] private float timer;
-    //Climb
+
+    // Climb
     public Vector3 climbVel;
-    //Fall Down
+
+    // Fall Down
     [SerializeField] private float fallDownSpeed;
-    //Sprite Managing
+
+    // Sprite Managing
     [SerializeField] private SpriteRenderer front;
-    
-    [Header("others")]
-    public int yarn; //coins
+
+    [Header("Others")]
+    public int yarn; // coins
     public int collectionable;
     public Vector3 spawnpoint;
-    [SerializeField] private float rayDistance;
+    [SerializeField] private float rayDistance = 0.1f;
     [SerializeField] private float gravity;
+    [SerializeField] private Vector3 origin;
+
+    private CapsuleCollider capsule;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
+        capsule = GetComponent<CapsuleCollider>();
 
         spawnpoint = transform.position;
         cameraTransform = Camera.main.transform;
+
+        rb.useGravity = true; // usar gravedad de Unity nativa
     }
 
     void Update()
-    {   
-        if(!isPaused)
-        rb.linearVelocity += new Vector3(rb.linearVelocity.x, -gravity, rb.linearVelocity.z);
-/*
-        var gamepad = Gamepad.current;
-        if (gamepad == null)
-            return;
-        float leftTriggerValue = gamepad.leftTrigger.ReadValue();
-*/
-        if (Input.GetButtonDown("Fire1") /*|| leftTriggerValue > 0.1f*/ && !isGrounded)
+    {
+        if (isPaused) return;
+
+        // Input salto / boost / caída
+        if (Input.GetButtonDown("Fire1") && !isGrounded)
+        {
             FallBack();
+        }
 
-        if (Input.GetButtonDown("Jump") && !fallingBack)
+        if (Input.GetButtonDown("Jump") && jumpCount < maxJumps && !fallingBack)
+        {
             Jump();
-        
+        }
+
         if (fallingBack)
+        {
             BoostJump();
-        
-        if (Keyboard.current.leftShiftKey.isPressed)
+        }
+
+        // Sprint
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
             speedCap = 15.5f;
-        else 
+        }
+        else
+        {
             speedCap = 8.5f;
+        }
 
-
+        // Estado de caída
         if (goingUp && rb.linearVelocity.y < -0.1f)
         {
-            animator.Play("Falling", 0, 0);
+            isFalling = true;
             goingUp = false;
-            //rb.linearVelocity += new Vector3(rb.linearVelocity.x, -5, rb.linearVelocity.z);
         }
 
-        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, rayDistance) && !isGrounded && rb.linearVelocity.y <= 0)    
+        // Ground check
+        if (!ignoreGroundCheck)
         {
-            isGrounded = true;
-            isJumping = false;
-            goingUp = false;
-            animator.Play("Idle", 0, 0);
-            jumpCount = 0;
+            bool groundHit = Physics.Raycast(transform.position, Vector3.down, rayDistance);
+            Debug.DrawRay(transform.position, Vector3.down * rayDistance, Color.green);
+
+            if (groundHit)
+            {
+                if (!isGrounded)
+                {
+                    jumpCount = 0;
+                }
+
+                isGrounded = true;
+                isJumping = false;
+                isFalling = false;
+                goingUp = false;
+
+                animator.SetBool("isJumping", false);
+                animator.SetBool("isFalling", false);
+            }
+            else
+            {
+                isGrounded = false;
+            }
         }
 
-        /*if (Physics.CheckSphere(transform.position, 1f, groundMask) && !isGrounded && rb.linearVelocity.y <= 0)
-        {
-            
-        }
-        */
+        animator.SetBool("isFalling", isFalling);
     }
 
     private void FixedUpdate()
     {
-        if(!isClimbing)
-        Correr();
+        if (!isClimbing)
+        {
+            Correr();
+        }
         else
-        Escalar();
-
+        {
+            Escalar();
+            animator.SetBool("isWalking", false);
+        }
 
         animator.SetBool("inRope", isClimbing);
     }
@@ -121,39 +157,43 @@ public class Player : MonoBehaviour
         float xInput = Input.GetAxisRaw("Horizontal");
         float zInput = Input.GetAxisRaw("Vertical");
 
-        // obtener direccion de la camara pero mantenerla horizontal para que no vuele.
-        Vector3 camForward = Vector3.Normalize(new Vector3(cameraTransform.forward.x, 0, cameraTransform.forward.z));
-        Vector3 camRight = Vector3.Normalize(new Vector3(cameraTransform.right.x, 0, cameraTransform.right.z));
+        Vector3 camForward = Vector3.Normalize(
+            new Vector3(cameraTransform.forward.x, 0, cameraTransform.forward.z)
+        );
 
-        // Combinar la direccion de la camara con el movimiento
+        Vector3 camRight = Vector3.Normalize(
+            new Vector3(cameraTransform.right.x, 0, cameraTransform.right.z)
+        );
+
         Vector3 moveDir = (camForward * zInput + camRight * xInput).normalized;
-        rb.linearVelocity += moveDir * totalSpeed * Time.deltaTime;
 
-        //si no se esta pulsando ningun boton se queda quieto para evitar deslizamientos raros
-        if (xInput == 0 && zInput == 0)
+        Vector3 velocity = rb.linearVelocity;
+        velocity.x = moveDir.x * totalSpeed;
+        velocity.z = moveDir.z * totalSpeed;
+        rb.linearVelocity = velocity;
+
+        // sprite mirando adelante / atrás
+        if (zInput > 0.1f)
         {
-            rb.linearVelocity = new Vector3(0f, rb.linearVelocity.y, 0f);
-            if (isJumping == false && rb.linearVelocity.y >= 0)
-            {
-                rb.linearVelocity = Vector3.zero;
-            }
+            facingForward = true;
+        }
+        else if (zInput < -0.1f)
+        {
+            facingForward = false;
+        }
+
+        if (facingForward)
+        {
+            sr.enabled = true;
+            front.gameObject.SetActive(false);
         }
         else
         {
-            if (xInput == 0)
-                if (zInput == 1)
-                {
-                    sr.enabled = true;
-                    front.gameObject.SetActive(false);
-                }
-                else
-                {
-                    sr.enabled = false;
-                    front.gameObject.SetActive(true);
-                }
+            sr.enabled = false;
+            front.gameObject.SetActive(true);
         }
 
-        //cap de velocidad 
+        // cap de velocidad
         Vector3 flatVel = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
         if (flatVel.magnitude > speedCap)
         {
@@ -161,9 +201,8 @@ public class Player : MonoBehaviour
             rb.linearVelocity = new Vector3(flatVel.x, rb.linearVelocity.y, flatVel.z);
         }
 
-        //animacion de caminar:
         bool hasMovementInput = moveDir.sqrMagnitude > 0.001f;
-        isWalking = hasMovementInput && isGrounded;
+        isWalking = hasMovementInput && !isJumping;
 
         animator.SetBool("isWalking", isWalking);
         animator.SetBool("isGrounded", isGrounded);
@@ -171,12 +210,18 @@ public class Player : MonoBehaviour
 
     public void Escalar()
     {
-        if(Input.GetAxisRaw("Vertical") >= 0.1)
-            climbVel = rb.linearVelocity = new Vector3 (0, 5, 0);
-        else if (Input.GetAxisRaw("Vertical") <= -0.1)
-            climbVel = rb.linearVelocity = new Vector3 (0, -5, 0);
-        else    
+        if (Input.GetAxisRaw("Vertical") >= 0.1f)
+        {
+            climbVel = rb.linearVelocity = new Vector3(0, 5, 0);
+        }
+        else if (Input.GetAxisRaw("Vertical") <= -0.1f)
+        {
+            climbVel = rb.linearVelocity = new Vector3(0, -5, 0);
+        }
+        else
+        {
             climbVel = rb.linearVelocity = Vector3.zero;
+        }
 
         bool hasMovementInput = climbVel.sqrMagnitude > 0.001f;
         isWalking = hasMovementInput && isClimbing;
@@ -186,21 +231,36 @@ public class Player : MonoBehaviour
 
     private void Jump()
     {
-        if (jumpCount == maxJumps) return;
-        animator.Play("Jumping", 0, 0);
+        if (jumpCount >= maxJumps) return;
+
+        ignoreGroundCheck = true;
+
         isGrounded = false;
         isJumping = true;
         goingUp = true;
+        isFalling = false;
+
+        animator.SetBool("isFalling", false);
+        animator.SetBool("isJumping", true);
+
+        float finalJumpForce = boostedJump
+            ? jumpForce + jumpForce * jumpMult
+            : jumpForce;
+
+        boostedJump = false;
+
+        rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
+        rb.AddForce(Vector3.up * finalJumpForce, ForceMode.Impulse);
+
         jumpCount++;
-        rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z);
-        if (boostedJump)
-        {
-            rb.linearVelocity += Vector3.up * jumpForce * jumpMult;
-            boostedJump = false;
-            fallingBack = false;
-        }
-        rb.linearVelocity += Vector3.up * jumpForce;
-        //rb.AddForce(Vector3.up * jumpForce);
+
+        StartCoroutine(ResetGroundCheckNextFrame());
+    }
+
+    private System.Collections.IEnumerator ResetGroundCheckNextFrame()
+    {
+        yield return null; // espera un frame
+        ignoreGroundCheck = false;
     }
 
     private void BoostJump()
@@ -208,24 +268,25 @@ public class Player : MonoBehaviour
         if (fallingBack && isGrounded)
         {
             timer += Time.deltaTime;
-            if (timer < 0.5)
+
+            if (timer < 0.5f)
             {
                 boostedJump = true;
                 fallingBack = false;
             }
-            if (timer > 0.5)
+            else
             {
                 boostedJump = false;
                 fallingBack = false;
-                timer = 0;
+                timer = 0f;
             }
         }
     }
-    
-    void FallBack() 
+
+    void FallBack()
     {
-        rb.linearVelocity -= Vector3.up * fallDownSpeed * Time.deltaTime;  
+        animator.SetBool("isFalling", true);
+        rb.AddForce(-Vector3.up * fallDownSpeed, ForceMode.Impulse);
         fallingBack = true;
-        animator.Play("Falling", 0, 0);
     }
 }
