@@ -93,11 +93,11 @@ public class Player : MonoBehaviour
         // Sprint
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            speedCap = 15.5f;
+            speedCap = 10f;
         }
         else
         {
-            speedCap = 8.5f;
+            speedCap = 6;
         }
 
         // Estado de caída
