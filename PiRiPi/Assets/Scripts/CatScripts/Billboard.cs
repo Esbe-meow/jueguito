@@ -9,24 +9,19 @@ public class Billboard : MonoBehaviour
         cameraTransform = Camera.main.transform;
     }
 
-    void Update()
+    private void LateUpdate()
     {
-        //si es un coleccionable, tambien rotara hacia arriba, si no sera un billboard normal.
-        if (this.gameObject.CompareTag("Collectibles"))
+        if (gameObject.CompareTag("Collectibles"))
         {
-            //mantener el sprite siempre mirando a la camara pero tambien gira hacia arriba
-            Vector3 camrotate = (cameraTransform.forward).normalized;
-            Quaternion targetRotation = Quaternion.LookRotation(camrotate);
+            Vector3 camForward = cameraTransform.forward.normalized;
+            Quaternion targetRotation = Quaternion.LookRotation(camForward);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 180f * Time.deltaTime);
         }
         else
         {
-            //mantener el sprite siempre mirando a la camara
-            Vector3 camForward = Vector3.Normalize(new Vector3(cameraTransform.forward.x, 0, cameraTransform.forward.z));
-            Vector3 camrotate = (camForward).normalized;
-            Quaternion targetRotation = Quaternion.LookRotation(camrotate);
+            Vector3 camForward = new Vector3(cameraTransform.forward.x, 0, cameraTransform.forward.z).normalized;
+            Quaternion targetRotation = Quaternion.LookRotation(camForward);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 180f * Time.deltaTime);
         }
-        
     }
 }

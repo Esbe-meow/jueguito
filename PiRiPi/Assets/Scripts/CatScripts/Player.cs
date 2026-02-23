@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     [SerializeField] private bool isWalking;
     [SerializeField] private bool isFalling;
     public bool isPaused;
-    private bool facingForward = true; // true = espalda a c√°mara
+    private bool facingForward = true; // true = espalda a c·mara
     [SerializeField] private bool fallingBack; // falling to the ground
     [SerializeField] private bool boostedJump; // can jump higher
     private bool goingUp; // going up after a jump
@@ -74,7 +74,7 @@ public class Player : MonoBehaviour
     {
         if (isPaused) return;
 
-        // Input salto / boost / ca√≠da
+        // Input salto / boost / caÌda
         if (Input.GetButtonDown("Fire1") && !isGrounded)
         {
             FallBack();
@@ -100,7 +100,7 @@ public class Player : MonoBehaviour
             speedCap = 6;
         }
 
-        // Estado de ca√≠da
+        // Estado de caÌda
         if (goingUp && rb.linearVelocity.y < -0.1f)
         {
             isFalling = true;
@@ -172,7 +172,7 @@ public class Player : MonoBehaviour
         velocity.z = moveDir.z * totalSpeed;
         rb.linearVelocity = velocity;
 
-        // sprite mirando adelante / atr√°s
+        // sprite mirando adelante / atr·s
         if (zInput > 0.1f)
         {
             facingForward = true;
