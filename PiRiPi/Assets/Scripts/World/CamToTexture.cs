@@ -22,15 +22,15 @@ public class PlayerCameraOnTV : MonoBehaviour
         rt = new RenderTexture(width, height, 24);
         rt.Create();
 
-        Material mat = tvRenderer.material; // esto instancia si era shared
+        Material mat = tvRenderer.material; // Esto instancia si era shared
         mat.mainTexture = rt;
         tvRenderer.material = mat;
 
-        // crear y configurar camara espejo
+        // Crear y configurar camara espejo
         GameObject g = new GameObject("MirrorCam");
         mirrorCam = g.AddComponent<Camera>();
 
-        // copiar ajustes importantes de la camara del jugador
+        // Copiar ajustes importantes de la camara del jugador
         mirrorCam.CopyFrom(playerCamera);
         mirrorCam.cullingMask = playerCamera.cullingMask;
         mirrorCam.clearFlags = playerCamera.clearFlags;
@@ -39,15 +39,14 @@ public class PlayerCameraOnTV : MonoBehaviour
         mirrorCam.allowHDR = playerCamera.allowHDR;
         mirrorCam.allowMSAA = playerCamera.allowMSAA;
 
-        // evitar audio listeners duplicados
+        // Evitar audio listeners duplicados
         var al = mirrorCam.GetComponent<AudioListener>();
         if (al != null) DestroyImmediate(al);
 
-        // no render autom�tico a pantalla: lo haremos con Render()
         mirrorCam.enabled = false;
         mirrorCam.targetTexture = rt;
 
-        // parentear para sincronizar posicion/rotacion con la camara del jugador
+        // Emparentar para sincronizar posicion/rotacion con la camara del jugador
         g.transform.SetParent(playerCamera.transform, false);
         g.transform.localPosition = Vector3.zero;
         g.transform.localRotation = Quaternion.identity;
@@ -57,7 +56,7 @@ public class PlayerCameraOnTV : MonoBehaviour
     {
         if (mirrorCam != null)
         {
-            // en caso de no parentearse correctamente, sincronizamos transform
+            // En caso de no emparentarse correctamente, sincroniza con transform
             mirrorCam.transform.position = playerCamera.transform.position;
             mirrorCam.transform.rotation = playerCamera.transform.rotation;
 

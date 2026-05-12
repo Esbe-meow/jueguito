@@ -6,7 +6,8 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-    // variables:
+    #region  Variables
+
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private SpriteRenderer sr;
     [SerializeField] public Rigidbody rb;
@@ -22,34 +23,34 @@ public class Player : MonoBehaviour
     [SerializeField] private bool isWalking;
     [SerializeField] private bool isFalling;
     public bool isPaused;
-    private bool facingForward = true; // true = espalda a cámara
-    [SerializeField] private bool fallingBack; // falling to the ground
-    [SerializeField] private bool boostedJump; // can jump higher
-    private bool goingUp; // going up after a jump
+    private bool facingForward = true; // True = espalda a camara
+    [SerializeField] private bool fallingBack; // Cayendo al suelo
+    [SerializeField] private bool boostedJump; // Activa el salto potenciado
+    private bool goingUp; // Subiendo despues de saltar
 
     [Header("Movility")]
-    // Movement
+    // Movimiento
     [SerializeField] private float totalSpeed;
     [SerializeField] private float speedCap;
 
-    // Jump
+    // Salto
     [SerializeField] private int jumpCount;
-    [SerializeField] private int maxJumps = 2; // doble salto
+    [SerializeField] private int maxJumps = 2; // Doble salto
     [SerializeField] private float jumpMult;
     [SerializeField] private float jumpForce;
     [SerializeField] private float timer;
 
-    // Climb
+    // Escalar
     public Vector3 climbVel;
 
-    // Fall Down
+    // Caida rapida
     [SerializeField] private float fallDownSpeed;
 
-    // Sprite Managing
+    // Sprite de la cara
     [SerializeField] private SpriteRenderer front;
 
     [Header("Others")]
-    public int yarn; // coins
+    public int yarn; // Monedas
     public int collectionable;
     public Vector3 spawnpoint;
     [SerializeField] private float rayDistance = 0.1f;
@@ -57,6 +58,8 @@ public class Player : MonoBehaviour
     [SerializeField] private Vector3 origin;
 
     private CapsuleCollider capsule;
+    
+    #endregion
 
     void Start()
     {
@@ -67,40 +70,28 @@ public class Player : MonoBehaviour
         spawnpoint = transform.position;
         cameraTransform = Camera.main.transform;
 
-        rb.useGravity = true; // usar gravedad de Unity nativa
+        rb.useGravity = true; // Usar gravedad de Unity nativa
     }
 
     void Update()
     {
         if (isPaused) return;
 
-        // Input salto / boost / caída
-        if (Input.GetButtonDown("Fire1") && !isGrounded)
-        {
-            FallBack();
-        }
+        // Input de caida rapida
+        if (Input.GetButtonDown("Fire1") && !isGrounded) FallBack();
+        
+        // Input de Salto
+        if (Input.GetButtonDown("Jump") && jumpCount < maxJumps && !fallingBack){ Jump();}
 
-        if (Input.GetButtonDown("Jump") && jumpCount < maxJumps && !fallingBack)
-        {
-            Jump();
-        }
-
-        if (fallingBack)
-        {
-            BoostJump();
-        }
+        // Arreglar esto
+        if (fallingBack) BoostJump();
+        
+            
 
         // Sprint
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            speedCap = 10f;
-        }
-        else
-        {
-            speedCap = 6;
-        }
+        speedCap = Input.GetKey(KeyCode.LeftShift) ? 10 : 6;
 
-        // Estado de caída
+        // Estado de caida (cuando llega al punto mas alto de la parabola del salto)
         if (goingUp && rb.linearVelocity.y < -0.1f)
         {
             isFalling = true;
@@ -115,10 +106,7 @@ public class Player : MonoBehaviour
 
             if (groundHit)
             {
-                if (!isGrounded)
-                {
-                    jumpCount = 0;
-                }
+                if (!isGrounded) jumpCount = 0;
 
                 isGrounded = true;
                 isJumping = false;
@@ -128,10 +116,7 @@ public class Player : MonoBehaviour
                 animator.SetBool("isJumping", false);
                 animator.SetBool("isFalling", false);
             }
-            else
-            {
-                isGrounded = false;
-            }
+            else isGrounded = false;
         }
 
         animator.SetBool("isFalling", isFalling);
@@ -139,10 +124,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!isClimbing)
-        {
-            Correr();
-        }
+        if (!isClimbing) Correr();
         else
         {
             Escalar();
@@ -172,15 +154,9 @@ public class Player : MonoBehaviour
         velocity.z = moveDir.z * totalSpeed;
         rb.linearVelocity = velocity;
 
-        // sprite mirando adelante / atrás
-        if (zInput > 0.1f)
-        {
-            facingForward = true;
-        }
-        else if (zInput < -0.1f)
-        {
-            facingForward = false;
-        }
+        // Sprite mirando adelante / atras
+        if (zInput > 0.1f) facingForward = true;
+        else if (zInput < -0.1f) facingForward = false;
 
         if (facingForward)
         {
@@ -193,7 +169,7 @@ public class Player : MonoBehaviour
             front.gameObject.SetActive(true);
         }
 
-        // cap de velocidad
+        // Cap de velocidad
         Vector3 flatVel = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
         if (flatVel.magnitude > speedCap)
         {
@@ -210,18 +186,9 @@ public class Player : MonoBehaviour
 
     public void Escalar()
     {
-        if (Input.GetAxisRaw("Vertical") >= 0.1f)
-        {
-            climbVel = rb.linearVelocity = new Vector3(0, 5, 0);
-        }
-        else if (Input.GetAxisRaw("Vertical") <= -0.1f)
-        {
-            climbVel = rb.linearVelocity = new Vector3(0, -5, 0);
-        }
-        else
-        {
-            climbVel = rb.linearVelocity = Vector3.zero;
-        }
+        if (Input.GetAxisRaw("Vertical") >= 0.1f) climbVel = rb.linearVelocity = new Vector3(0, 5, 0);
+        else if (Input.GetAxisRaw("Vertical") <= -0.1f) climbVel = rb.linearVelocity = new Vector3(0, -5, 0);
+        else climbVel = rb.linearVelocity = Vector3.zero;
 
         bool hasMovementInput = climbVel.sqrMagnitude > 0.001f;
         isWalking = hasMovementInput && isClimbing;
@@ -259,7 +226,7 @@ public class Player : MonoBehaviour
 
     private System.Collections.IEnumerator ResetGroundCheckNextFrame()
     {
-        yield return null; // espera un frame
+        yield return null; // Espera un frame
         ignoreGroundCheck = false;
     }
 
@@ -273,11 +240,12 @@ public class Player : MonoBehaviour
             {
                 boostedJump = true;
                 fallingBack = false;
+                //hola
+                timer = 0;
             }
             else
             {
                 boostedJump = false;
-                fallingBack = false;
                 timer = 0f;
             }
         }

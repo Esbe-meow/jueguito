@@ -7,8 +7,8 @@ public class Roomba : MonoBehaviour
     [SerializeField] float rotationSpeed;
     [SerializeField] float mvmntSpeed;
     [SerializeField] float yAdd;
-    [SerializeField] float timer; //timer for "patroling"
-    [SerializeField] float timer2; //time to chase again after hitting furniture
+    [SerializeField] float timer; // Temporizador para cuando esta patruyando"
+    [SerializeField] float timer2; // Temporizador para volver a perseguir despues de chocarse con algo
     [Range(-62f, 62f)]
     [SerializeField] float randomNumX;
     [Range(-62f, 62f)]

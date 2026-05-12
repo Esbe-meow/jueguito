@@ -9,7 +9,6 @@ public class spawnpoints : MonoBehaviour
         player.spawnpoint = player.transform.position;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(player.transform.position.y < -1)

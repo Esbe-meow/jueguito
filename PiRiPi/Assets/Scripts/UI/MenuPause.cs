@@ -63,16 +63,16 @@ public class MenuPause : MonoBehaviour
     {
         player.isPaused = pauseMenu.activeSelf;
 
-        //blocks main menu if theres other above it
+        // Bloquea el menu principal si hay otro por encima
         if (!optionsMenu.activeSelf)
             if (Input.GetButtonDown("Pause"))
             TogglePauseMenu(); 
     }
 
-    //Pause menu:
+    // Pause menu:
     public void TogglePauseMenu()
     {
-        //updates yarns to show in menu
+        // Actualiza el numero de monedas
         textM.text = player.yarn.ToString();
 
         if (pauseMenu.activeSelf)
@@ -81,7 +81,7 @@ public class MenuPause : MonoBehaviour
             Pause();
     }
 
-    //pauses time and open the menu
+    // Pausa el tiempo y abre el menu
     void Pause()
     {
         if (pauseMenu.activeSelf)
@@ -89,18 +89,18 @@ public class MenuPause : MonoBehaviour
 
         AS.PlayOneShot(openMenu);
 
-        //save previous timeScale
+        // Guarda el Timescale anterior (1) y lo pone a 0
         previousTimeScale = Time.timeScale;
         Time.timeScale = 0f;
         
         if (pauseMenu != null) pauseMenu.SetActive(true);
 
-        //unlocks Cursor
+        // Desbloquea el cursor
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
 
-    //resume time and close the menu
+    // Cierra el menu y reanuda el tiempo
     void Resume()
     {
         if (!pauseMenu.activeSelf)
@@ -108,12 +108,12 @@ public class MenuPause : MonoBehaviour
 
         AS.PlayOneShot(closeMenu);
 
-        //restore timeScale
+        // Reestablece el Timescale anterior
         Time.timeScale = previousTimeScale; 
 
         if (pauseMenu != null) pauseMenu.SetActive(false);
 
-        //locks cursor
+        // Bloquea el cursor
         if (Cursor.lockState != CursorLockMode.Locked)
         {
             Cursor.visible = false;
@@ -121,7 +121,7 @@ public class MenuPause : MonoBehaviour
         }      
     } 
 
-    //Options menu:
+    // Options menu:
     public void ToggleOptionsMenu()
     {
         if (!optionsMenu.activeSelf)
@@ -140,7 +140,7 @@ public class MenuPause : MonoBehaviour
     {
         StartCoroutine(CloseAfterAnimation());
     }
-    //animacion de cierre
+    // Animacion de cierre
     private IEnumerator CloseAfterAnimation()
     {
         animator.SetTrigger("Close");
@@ -149,7 +149,7 @@ public class MenuPause : MonoBehaviour
         optionsMenu.SetActive(false);
     }
 
-    //Video menu:
+    // Video menu:
     public void ToggleVideoMenu()
     {
         if (!videoMenu.activeSelf)
@@ -158,7 +158,7 @@ public class MenuPause : MonoBehaviour
             videoMenu.SetActive(false);
     }
 
-    //Audio menu:
+    // Audio menu:
     public void ToggleAudioMenu()
     {
         if(!audioMenu.activeSelf)
@@ -175,7 +175,7 @@ public class MenuPause : MonoBehaviour
             controlsMenu.SetActive(false);
     }
 
-    //Pause buttons
+    // Pause buttons
     public void OnSpawnpointButton() 
     {
         player.transform.position = player.spawnpoint; 
@@ -193,7 +193,7 @@ public class MenuPause : MonoBehaviour
         SceneManager.LoadScene(gameSceneName);
     }
 
-    //Options buttons
+    // Options buttons
     public void OnVideoButton() => ToggleVideoMenu();
     
     public void OnAudioButton() => ToggleAudioMenu();
@@ -202,13 +202,13 @@ public class MenuPause : MonoBehaviour
 
     public void OnBacktoMenu() => ToggleOptionsMenu();
 
-    //save player
+    // Save player
     public void SavePlayer()
     {
         SaveSystem.SavePlayer(player);
     }
 
-    //load player
+    // Load player
     public void LoadPlayer()
     {
         PlayerData data = SaveSystem.LoadPlayer();

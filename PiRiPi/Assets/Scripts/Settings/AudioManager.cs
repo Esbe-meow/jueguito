@@ -26,7 +26,7 @@ public class AudioManager : MonoBehaviour
         LoadVolume();
     }
 
-    void LoadVolume() //Volume saved in VolumeSettings.cs
+    void LoadVolume() // El volumen se guarda en VolumeSettings.cs
     {
         float masterVolume = PlayerPrefs.GetFloat(MASTER_KEY, 1f);
         float sfxVolume = PlayerPrefs.GetFloat(SFX_KEY, 1f);
