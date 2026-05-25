@@ -3,8 +3,11 @@ using UnityEngine;
 public class Roomba : MonoBehaviour
 {
     [SerializeField] GameObject cat;
+    [SerializeField] private GameObject brushLeft;
+    [SerializeField] private GameObject brushRight;
     [SerializeField] Player player;
     [SerializeField] float rotationSpeed;
+    [SerializeField] float brushRotationSpeed;
     [SerializeField] float mvmntSpeed;
     [SerializeField] float yAdd;
     [SerializeField] float timer; // Temporizador para cuando esta patruyando"
@@ -27,6 +30,10 @@ public class Roomba : MonoBehaviour
 
     void Update()
     {
+        //rotacion de los cepillos
+        brushLeft.transform.Rotate(0, brushRotationSpeed * Time.deltaTime, 0);
+        brushRight.transform.Rotate(0, -brushRotationSpeed * Time.deltaTime, 0);
+        
         if (cat.transform.position.y <= this.transform.position.y + yAdd && !onTop && !cantReach)
             tracking = true;
         else

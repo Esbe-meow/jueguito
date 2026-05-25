@@ -30,6 +30,10 @@ public class DialogueManager : MonoBehaviour
 
     Coroutine typingCoroutine;
     string currentSentence;
+    
+    [Header("Audio")]
+    [SerializeField] AudioSource AS;
+    [SerializeField] AudioClip blahblah;
 
     void Awake()
     {
@@ -92,6 +96,7 @@ public class DialogueManager : MonoBehaviour
         foreach (char c in sentence)
         {
             dialogueText.text += c;
+            AS.PlayOneShot(blahblah);
             yield return new WaitForSeconds(typingSpeed);
         }
 
