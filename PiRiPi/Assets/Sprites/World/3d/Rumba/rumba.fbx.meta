@@ -8,22 +8,22 @@ ModelImporter:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: rumba_cepillos_BaseMap
-    second: {fileID: 2800000, guid: 9535b032032d9c4438f3976a9bf8a267, type: 3}
+    second: {fileID: 2800000, guid: e41667b6f92f1f74594fd970e1ac3380, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: rumba_cepillos_Normal
-    second: {fileID: 2800000, guid: 5baac7215f3e2234ca3cfb47219fe867, type: 3}
+    second: {fileID: 2800000, guid: 1d56f272c10fe6d40a37f6a4725bab83, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: rumba_rumba_BaseMap
-    second: {fileID: 2800000, guid: 0cc27787bc806c84c8cb4c50f603d24d, type: 3}
+    second: {fileID: 2800000, guid: e90f84fb61fadf445932b9ad059f61bb, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: rumba_rumba_Normal
-    second: {fileID: 2800000, guid: 847b4fc21e55c224bb72999b27c1017e, type: 3}
+    second: {fileID: 2800000, guid: 02e29fdbbc26bd54895f05ad35dcf2a9, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -111,7 +111,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1
+    globalScale: 100
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
