@@ -178,8 +178,8 @@ public class MenuPause : MonoBehaviour
     // Pause buttons
     public void OnSpawnpointButton() 
     {
-        player.transform.position = player.spawnpoint; 
         TogglePauseMenu();
+        player.transform.position = player.spawnpoint; 
     }
 
     public void OnContinueButton() => TogglePauseMenu();

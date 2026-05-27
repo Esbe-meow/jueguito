@@ -18,6 +18,13 @@ public class CameraController : MonoBehaviour
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        float savedSensitivity = PlayerPrefs.GetFloat("Sensitivity", _sensitivity);
+        SetSensitivity(savedSensitivity);
+    }
+    
+    public void SetSensitivity(float newSensitivity)
+    {
+        _sensitivity = newSensitivity;
     }
 
     private Quaternion Rotation()
@@ -34,5 +41,5 @@ public class CameraController : MonoBehaviour
     }
 
     private void Update() => transform.rotation = Rotation();
-    private void LateUpdate() => transform.position = _target.position; // due to your code, no smooth positioning for you teto
+    private void LateUpdate() => transform.position = _target.position; // due to your code, no smooth positioning
 }

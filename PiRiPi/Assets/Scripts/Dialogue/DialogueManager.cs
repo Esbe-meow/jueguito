@@ -40,6 +40,51 @@ public class DialogueManager : MonoBehaviour
         sentences = new Queue<string>();
     }
 
+    private void Start()
+    {
+        if (player == null)
+            player = FindObjectOfType<Player>();
+
+        GameObject[] collectibles = GameObject.FindGameObjectsWithTag("Collectible");
+        totalCollectibles = collectibles.Length;
+
+        if (totalCollectibles == 0)
+            Debug.LogWarning("No hay objetos con tag 'Collectible' en la escena.");
+
+        // Buscar DialogueManager de forma más segura
+        if (dialogueManager == null)
+            dialogueManager = FindObjectOfType<DialogueManager>();
+
+        if (dialogueManager == null)
+            Debug.LogError("DialogueManager no encontrado en la escena!");
+    }
+
+    private void Update()
+    {
+        // Verificar que dialogueManager existe y no está siendo destruido
+        if (pendingSceneChange && dialogueManager != null)
+        {
+            // Acceder a 'interacting' de forma segura
+            bool isInteracting = false;
+            try
+            {
+                isInteracting = dialogueManager.interacting;
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError($"Error al acceder a dialogueManager.interacting: {e.Message}");
+                return;
+            }
+
+            if (!isInteracting)
+            {
+                pendingSceneChange = false;
+                Debug.Log($"Cambiando a la escena: {nombreEscenaDestino}");
+                SceneManager.LoadScene(nombreEscenaDestino);
+            }
+        }
+    }
+    
     public void StartDialogue(Dialogue dialogue, NPCtalk npc)
     {
         interacting = true;
@@ -48,6 +93,7 @@ public class DialogueManager : MonoBehaviour
         currentNPC = npc;
 
         nameText.text = dialogue.name;
+        blahblah = dialogue.voiceClip;
         sentences.Clear();
 
         foreach (string sentence in dialogue.sentences)
@@ -96,6 +142,7 @@ public class DialogueManager : MonoBehaviour
         foreach (char c in sentence)
         {
             dialogueText.text += c;
+            //AS.Stop();
             AS.PlayOneShot(blahblah);
             yield return new WaitForSeconds(typingSpeed);
         }
