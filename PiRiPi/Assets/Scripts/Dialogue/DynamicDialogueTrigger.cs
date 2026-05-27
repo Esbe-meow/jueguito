@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using System.Collections;
 
 public class DynamicDialogueTrigger : DialogueTrigger
 {
@@ -14,16 +14,13 @@ public class DynamicDialogueTrigger : DialogueTrigger
 
     [Header("Referencias")]
     [SerializeField] private Player player;
-    
+
     [Header("Cambio de escena")]
     [SerializeField] private string nombreEscenaDestino;
-    
-    private int totalCollectibles; // Total de coleccionables en el nivel
-    private DialogueManager dialogueManager;
-    private bool pendingSceneChange = false;
-    private bool interactingHere = false;
 
-    // Guarda el nombre del NPC si ya habló con el antes
+    private int totalCollectibles;
+    private DialogueManager dialogueManager;
+
     private string PlayerPrefsKey => $"NPCTalked_{gameObject.name}";
     private bool HasTalkedBefore
     {
@@ -36,40 +33,50 @@ public class DynamicDialogueTrigger : DialogueTrigger
         if (player == null)
             player = FindObjectOfType<Player>();
 
+        // Contar coleccionables por tag
         GameObject[] collectibles = GameObject.FindGameObjectsWithTag("Collectibles");
         totalCollectibles = collectibles.Length;
 
         if (totalCollectibles == 0)
-            Debug.LogWarning("No hay objetos con tag 'Collectible' en la escena. Asegúrate de etiquetarlos.");
-    }
-    
-    private void Update()
-    {
-        if (pendingSceneChange && !dialogueManager.interacting)
-        {
-            pendingSceneChange = false;
-            Debug.Log($"Cambiando a la escena: {nombreEscenaDestino}");
-            SceneManager.LoadScene(nombreEscenaDestino);
-        }
+            Debug.LogWarning("No hay objetos con tag 'Collectible' en la escena.");
+
+        dialogueManager = FindObjectOfType<DialogueManager>();
+        if (dialogueManager == null)
+            Debug.LogError("No se encontró DialogueManager en la escena.");
     }
 
-    // Este método reemplaza al original
     public override void TriggerDialogue(NPCtalk npc)
     {
-        // Selecciona el diálogo según el estado actual
+        // Seleccionar el diálogo adecuado según el estado actual
         dialogue = GetAppropriateDialogue();
-
-        // Llamar al método original (DialogueTrigger) para iniciar el diálogo
-        base.TriggerDialogue(npc);
-
-        // Marcar que ya se habló con este NPC (para la próxima vez)
-        HasTalkedBefore = true;
         
-        // Si tiene todos los coleccionables, pasa a creditos
+        // Iniciar el diálogo usando el método original
+        base.TriggerDialogue(npc);
+        
+        // Marcar que ya se habló con este NPC
+        HasTalkedBefore = true;
+
+        // Si el diálogo seleccionado es el de "todos los coleccionables", iniciar la corrutina para cambiar de escena
         if (dialogue == dialogo3 || dialogue == dialogo5)
         {
-            pendingSceneChange = true;
+            Debug.Log("Diálogo de colección completa detectado. Se cambiará de escena al cerrar el diálogo.");
+            StartCoroutine(WaitForDialogueEndAndChangeScene());
         }
+    }
+
+    private IEnumerator WaitForDialogueEndAndChangeScene()
+    {
+        // Esperar mientras el diálogo esté activo
+        while (dialogueManager != null && dialogueManager.interacting)
+        {
+            yield return null;
+        }
+
+        // Pequeña pausa para que termine la animación de cierre
+        yield return new WaitForSeconds(0.2f);
+
+        Debug.Log($"Cambiando a la escena: {nombreEscenaDestino}");
+        SceneManager.LoadScene(nombreEscenaDestino);
     }
 
     private Dialogue GetAppropriateDialogue()
@@ -78,6 +85,8 @@ public class DynamicDialogueTrigger : DialogueTrigger
         bool hasAll = collected >= totalCollectibles;
         bool hasAny = collected > 0;
         bool talkedBefore = HasTalkedBefore;
+
+        Debug.Log($"Coleccionables: {collected}/{totalCollectibles} | Todos: {hasAll} | Alguno: {hasAny} | Hablado antes: {talkedBefore}");
 
         if (!talkedBefore)
         {

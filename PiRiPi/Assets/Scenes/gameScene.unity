@@ -3108,6 +3108,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mesa_Fin
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 23890f481a1852842b4215902dfa124f, type: 3}
+      propertyPath: m_TagString
+      value: Blocking
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4135,6 +4139,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 5657f15814641cc43961a63484b83a77, type: 3}
       propertyPath: m_Name
       value: Mueble_Cajon_Fin
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5657f15814641cc43961a63484b83a77, type: 3}
+      propertyPath: m_TagString
+      value: Blocking
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7606,6 +7614,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f5dbe0497a7ec4d40b8e8dfa41a473b2, type: 3}
       propertyPath: m_Name
       value: Torre_Fin
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f5dbe0497a7ec4d40b8e8dfa41a473b2, type: 3}
+      propertyPath: m_TagString
+      value: Blocking
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11618,6 +11630,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LibroAzul
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e70ff2a5d9b070b4fa86478f71ba38b2, type: 3}
+      propertyPath: m_TagString
+      value: Blocking
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12042,6 +12058,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 6862f0eaf68246e4a93fd46be7bf3db4, type: 3}
       propertyPath: m_Name
       value: Libroverde
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6862f0eaf68246e4a93fd46be7bf3db4, type: 3}
+      propertyPath: m_TagString
+      value: Blocking
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12975,6 +12995,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mesilla_Fin
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 223928cadfcec244f85d5031be9fd831, type: 3}
+      propertyPath: m_TagString
+      value: Blocking
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13583,6 +13607,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 51b9e08d3c9041e4296e5d190cd2b927, type: 3}
       propertyPath: m_Name
       value: Cama_Fin
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 51b9e08d3c9041e4296e5d190cd2b927, type: 3}
+      propertyPath: m_TagString
+      value: Blocking
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14481,6 +14509,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 3fbc486a2097d094c859c6e734f81644, type: 3}
       propertyPath: m_Name
       value: Libro_Fin
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3fbc486a2097d094c859c6e734f81644, type: 3}
+      propertyPath: m_TagString
+      value: Blocking
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16567,8 +16599,38 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c286f089a15dc9043a19b6ea84628a4a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1812104003}
   m_SourcePrefab: {fileID: 100100000, guid: c286f089a15dc9043a19b6ea84628a4a, type: 3}
+--- !u!1 &1812104002 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c286f089a15dc9043a19b6ea84628a4a, type: 3}
+  m_PrefabInstance: {fileID: 1812104001}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &1812104003
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1812104002}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 8417119867765062592, guid: c286f089a15dc9043a19b6ea84628a4a, type: 3}
 --- !u!1 &1827148748 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5657f15814641cc43961a63484b83a77, type: 3}
